@@ -1,0 +1,34 @@
+
+
+.inicioImg {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    margin: auto;
+    overflow: hidden;
+    background-image: url('/assets/teamdev10.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 640px) {
+    /* Agrega aquí tus estilos para pantallas pequeñas */
+    .inicioImg {
+
+    overflow: hidden;
+        
+    }
+  }
+  
+  /* Estilos para pantallas grandes */
+  @media (min-width: 1024px) {
+    /* Agrega aquí tus estilos para pantallas grandes */
+
+  }

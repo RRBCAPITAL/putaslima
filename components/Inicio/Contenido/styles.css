@@ -1,0 +1,57 @@
+.filter-div {
+
+    /* border-top: 1px solid #d0d0d0; */
+
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    align-items: center;
+    overflow-x: auto;
+
+}
+
+.links-box {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: center;
+    opacity: 0.5;
+    min-width: fit-content;
+}
+
+.links-box:hover {
+
+    opacity: 1;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.links-img {
+
+    width: 2.4rem;
+    height: 2rem;
+    object-fit: contain;
+}
+
+.links-label {
+
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.selected-box {
+
+    opacity: 1;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+/* .selected-label {
+    box-sizing: border-box;
+    font-weight: 800;
+} */

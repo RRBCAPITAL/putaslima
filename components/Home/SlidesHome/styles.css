@@ -1,0 +1,48 @@
+/* #app {
+    height: 100%;
+  }
+  html,
+  body {
+    @apply bg-red-500 dark:bg-dark-l;
+    position: relative;
+    height: 100%;
+
+  }
+  
+  body {
+
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  } */
+  
+
+  .swiper {
+    @apply bg-white dark:bg-dark-l;
+    width: 80%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+
+    @apply bg-yellow-500 dark:bg-dark-l;
+
+    text-align: center;
+    font-size: 18px;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    @apply bg-violet-500 dark:bg-dark-l;
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  

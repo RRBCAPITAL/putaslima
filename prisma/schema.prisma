@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id        String     @id @default(cuid())
+  firstname String
+  fullname  String
+  username  String?
+  phone     String?
+  email     String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  image     String?
+  anuncios  anuncios[]
+  videos    videos[]
+  cositas   cositas[]
+  role      Role       @default(USER)
+  estado    Estado     @default(INACTIVE_COMMERCIAL)
+  pago      Pago       @default(NO_PAGO)
+  blocked   Blocked    @default(FALSE)
+}
+
+model anuncios {
+  id               String       @id @default(cuid())
+  idFrontend       String?
+  user             user         @relation(fields: [userId], references: [id])
+  userId           String
+  tarifaxhr        Int?
+  tarifaxmr        Int?
+  tarifaPresencial String?
+  tarifaVirtual    String?
+  name             String
+  description      String
+  whatsapp         String
+  region           String?
+  nacionalidad     String?
+  lugar            String?
+  diasAtencion     String // Campo para los dias de atención
+  horarioInicio    String // Campo para la hora de inicio del horario de atención
+  horarioFin       String // Campo para la hora de finalización del horario de atención
+  edad             Int
+  idioma           String[]
+  categorias       String[]
+  altura           String
+  peso             String
+  createdAt        DateTime     @default(now())
+  imagenPrincipal  String?
+  galeriaFotos     String[]
+  galeriaVideos    String[]
+  estado           Boolean      @default(false) //Representa que el anuncio no se encuentra activo en la plataforma.
+  nivel            NivelAnuncio @default(NOTHING)
+  views            Int          @default(0) //Representa la cantidad de veces que el anuncio ha sido visto dentro de la plataforma.
+  questionEnd      String
+  atencion         String[]
+  updatedAt        DateTime     @updatedAt
+}
+
+model videos {
+  id           String     @id @default(cuid())
+  idFrontend   String?
+  user         user       @relation(fields: [userId], references: [id])
+  userId       String
+  title        String
+  description  String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  videoUrl     String[] // Campo para almacenar la URL del video
+  thumbnailUrl String // Campo para almacenar la URL de la miniatura del video
+  views        Int        @default(0) // Agregar un campo para realizar un seguimiento del número de visualizaciones
+  nivel        NivelVideo @default(NOTHING)
+}
+
+model cositas {
+  id          String            @id @default(cuid())
+  idFrontend  String?
+  user        user              @relation(fields: [userId], references: [id])
+  userId      String
+  title       String
+  description String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  imageUrl    String // Campo para almacenar la URL de la miniatura del video
+  views       Int               @default(0) // Agregar un campo para realizar un seguimiento del número de visualizaciones
+  nivel       CategoriasCositas @default(NOTHING)
+}
+
+enum Role {
+  USER //Representa a los usuarios que se registran en la plataforma inicialmente.
+  ADMIN //Representa a los administradores de la plataforma con ciertos privilegios de administración.
+  SUPER_ADMIN //Representa a los super administradores con permisos avanzados para administrar la plataforma en su totalidad.
+}
+
+enum Blocked {
+  FALSE
+  TRUE
+}
+
+enum Pago {
+  PAGO
+  NO_PAGO
+}
+
+enum Estado {
+  INACTIVE_COMMERCIAL //Representa a los usuarios que no tienen anuncios activos.
+  PAYMENT_PENDING //Representa a los usuarios que han elegido entre front y back, aceptaron los requisitos y necesitan pagar por el servicio para avanzar al siguiente estado.
+  ACTIVE_ADD //Representa a los usuarios que han pagado y que tienen un anuncio activo.
+}
+
+enum NivelAnuncio {
+  NOTHING //Representa que el anuncio no esta activos.
+  SIMPLE //Representa que los anuncios tendran la minima exposicion.
+  MOTOMAMI //Representa que los anuncios tendran una buena exposicion.
+  BICHOTA //Representa que los anuncios tendran una excelente exposicion.
+}
+
+enum NivelVideo {
+  NOTHING //Representa que lso videos no estan activos.
+  UNDER //Representa que los videos tendran la minima exposicion.
+  MID //Representa que los videos tendran una buena exposicion.
+  ABOVE //Representa que los videos tendran una excelente exposicion.
+}
+
+enum CategoriasCositas {
+  NOTHING
+  SUPLEMENTOS
+  AUDIOLIBROS
+  SEXSHOP
+  ONLYFANS
+}

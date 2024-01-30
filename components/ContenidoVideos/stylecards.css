@@ -1,0 +1,28 @@
+
+.my-masonry-grid {
+    display: flex;
+    /* margin-left: -16px;  */
+    width: 100%;
+    gap: 40px;
+  }
+  
+  .my-masonry-grid_column {
+    /* padding-left: 4px;  */
+    padding-left: 3px;
+    padding-right: 3px;
+    background-clip: padding-box;
+  }
+
+  @media (min-width: 600px) {
+    /* Estilos para pantallas de 600px en adelante (celulares y tablets) */
+    .my-masonry-grid {
+      width: 96%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    /* Estilos para pantallas de 1024px en adelante (dispositivos grandes) */
+    .my-masonry-grid {
+      width: 96%;
+    }
+  }

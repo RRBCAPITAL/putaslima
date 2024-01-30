@@ -1,0 +1,66 @@
+
+.containImg {
+    @apply bg-[#6f01ff];
+    position: relative;
+    overflow: hidden;
+    @apply flex flex-col justify-end;
+}
+
+.detailImg {
+
+    background: url('/assets/avatar3.jpg');
+    position: absolute;
+    bottom: 0;top: 10%;left: 10%;right: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    border: #f3e6ff solid 4px;
+    box-shadow: 5px 5px 15px 10px rgb(0, 0, 0, 0.2)
+}
+
+.inputGroup {
+
+    @apply flex border rounded-xl bg-slate-50;
+    position: relative;
+    z-index: 20;
+}
+
+
+.inputText {
+
+    @apply w-full py-4 px-6 border bg-slate-100;
+    @apply focus:outline-none border-none;
+}
+
+
+.inputButton {
+
+    @apply w-full bg-[#6f01ff] box-border rounded-md py-3 text-gray-50 text-lg;
+}
+
+.inputButton:hover {
+
+    @apply bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-[#6f01ff];
+    @apply text-gray-700 border box-border;
+}
+
+.customButton {
+
+    @apply w-full border py-3 flex justify-center gap-2 hover:bg-gray-200;
+}
+
+.inputText + *{
+    color: #CBD5E1;
+}
+
+.inputText:focus + *{
+    color:rgba(111, 1, 255);
+}
+
+.inputText:not([type=email]) ~ span:hover *{
+
+    color: rgba(111, 1, 255);
+    cursor: pointer;    
+}
