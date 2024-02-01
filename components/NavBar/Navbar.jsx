@@ -110,12 +110,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     return (
     <div className={quick.className}>
 
-    {/* {
-      (pathname === '/' || pathname === '/videos' || pathname === '/cositas') && <BannerAnuncios />
-    } */}
-
-    <header className="z-[300] w-screen fixed  dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
-        <motion.div className=" h-[50px] w-[90%] mx-auto flex items-center justify-between"
+    <header className="z-[900] w-screen fixed dark:bg-dark-l bg-white py-0 px-[2rem]">
+        <motion.div className="h-[50px] w-[90%] mx-auto flex items-center justify-between"
          variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
         >
             
@@ -124,40 +120,16 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             <Link href={'/'} onClick={() => {
               setShow(false)
               setChangeNabvarF(!changeNabvarF)
-            }} className="font-extrabold">
-                    <img src="/assets/phlogo.jpeg" alt="" className="h-10 w-auto rounded-md shadow-sm"/>
+            }} className="font-extrabold bg-red-500 p-2 text-white rounded">
+                   PhotokinesS
             </Link>
             </div>
             <div className="hidden lg:block dark:text-white text-slate-800">
                 <ul className="my-auto flex gap-[2rem] h-full font-bold text-[14px]">
                 <Link
-                    href={'/inicio'}
-                    className={`my-auto ${pathname === ('/inicio') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}
-                >Inicio</Link>
-                <Link
                     href={'/'}
                     className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}
                 >Mujeres</Link>
-                <Link
-                    href={'/videos'}
-                    className={`my-auto ${pathname === ('/videos') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
-                Videos</Link>
-                <Link
-                    href={'/cositas'}
-                    className={`my-auto ${pathname === ('/cositas') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
-                Cositas</Link>
-                {/* <Link
-                    href={'/vip'}
-                    className={`my-auto ${pathname === ('/vip') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
-                Vip</Link>
-                <Link
-                    href={'/soporte'}
-                    className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
-                Soporte</Link> */}
-                
-                {
-
-                }
                 </ul>
             </div>
             </menu>
@@ -167,8 +139,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 
                <Link 
       href={`/dashboard-de-usuario/${id}`} 
-      className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
-                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
+      className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-red-100"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                  text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
     >
       <h3 className="my-auto text-t-red">Mis anuncios</h3>  
       <FaUserCheck className="my-auto text-t-red"/>       
@@ -177,31 +149,19 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 {
                    currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
                    <>
-                   <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
-                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
-                           <h3 className="my-auto text-[#794cff]">Dashboard</h3>
-                        <FaUserCheck className="my-auto text-[#794cff]"/>  
+                   <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                    text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
+                           <h3 className="my-auto text-t-red">Dashboard</h3>
+                        <FaUserCheck className="my-auto text-t-red"/>  
                         
-                    </Link>
-
-                    <Link href={'/crear-videos'} className={`${pathname === '/crear-videos' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
-                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
-                           <MdCreateNewFolder className="my-auto w-4 h-4 text-[#794cff]"/>  
-                           <h3 className="my-auto text-[#794cff]">Videos</h3>                        
-                    </Link>
-
-                    <Link href={'/crear-cositas'} className={`${pathname === '/crear-cositas' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
-                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
-                           <MdCreateNewFolder className="my-auto w-4 h-4 text-[#794cff]"/> 
-                           <h3 className="my-auto text-[#794cff]">Cositas</h3>
                     </Link>
                     </>
                 }
 
                {!currentUserR ? 
-                  <Link href={'/sign-in'} className="bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] outline-none
-                  rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
-                <nav className="inline-block text-t-red">Iniciar</nav> Sesión
+                  <Link href={'/sign-in'} className="bg-red-100 border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] outline-none
+                 text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
+                <nav className="inline-block text-t-red">Iniciar Sesión</nav>
                 </Link>
                 : <div className="my-auto border-2 scale-[1.1] border-bor-red rounded-full">
                 <UserButton afterSignOutUrl="/sign-in"/>
@@ -212,8 +172,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 {
                   currentUserR ? <Link
                   href={'/crear-anuncio'}
-                  className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] border-none outline-none
-                  rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
+                  className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[0.3rem] px-[0.8rem] border-none outline-none
+                  text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                   
                   >
               <Button 
@@ -222,11 +182,11 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
               loadingText="Cargando"
               onClick={handleClick} // Llama a la función cuando se hace clic
               >
-                  Crear anuncio
+                  Publicar anuncio
               </Button>
           </Link> : <Link
                 href={'/sign-in'}
-                className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] border-none outline-none
+                className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[0.3rem] px-[0.8rem] border-none outline-none
                 rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                 
                 >
@@ -236,7 +196,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             loadingText="Cargando"
             onClick={handleClick} // Llama a la función cuando se hace clic
             >
-                Crear anuncio
+                Publicar anuncio
             </Button>
         </Link>
                 }
@@ -299,14 +259,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 </>        
                 }
                   
-                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') ? "text-t-red" : "dark:text-white text-slate-600"} mt-4 my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mujeres</Link>
-                     <Link href={'/videos'} onClick={handleNavbarPhone} className={` ${pathname === ('/videos') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Videos</Link>
-                    <Link href={'/cositas'} onClick={handleNavbarPhone} className={` ${pathname === ('/cositas') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Cositas</Link>
                     <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === `/dashboard-de-usuario/${id}` ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mis anuncios</Link>
                     

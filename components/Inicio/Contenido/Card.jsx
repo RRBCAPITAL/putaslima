@@ -17,6 +17,7 @@ const Card = ({
   nivel,
   anuncioTarifaPresencial,
   anuncioTarifaVirtual,
+  setDetailsModal,
 }) => {
   const router = useRouter();
   const shortId = id?.substring(0, 7);
@@ -32,19 +33,15 @@ const Card = ({
   useEffect(() => {
     if (anuncioTarifaPresencial) {
       const tarifaPresencial = JSON.parse(anuncioTarifaPresencial);
-      console.log(tarifaPresencial);
       setTarifaPresencial(tarifaPresencial);
     }
     if (anuncioTarifaVirtual) {
       const tarifaVirtual = JSON.parse(anuncioTarifaVirtual);
-      console.log(tarifaVirtual);
       setTarifaVirtual(tarifaVirtual);
     }
   }, [anuncioTarifaVirtual, anuncioTarifaPresencial]);
 
-  console.log(tarifaPresencial);
-  console.log(tarifaVirtual);
-
+  
   return (
     <div
       onClick={() => {
@@ -52,15 +49,22 @@ const Card = ({
         const formattedRegion = region.replace(/\s+/g, "-");
         const formattedLugar = lugar.replace(/\s+/g, "-");
         const formattedName = name.replace(/\s+/g, "-");
-
-        router.push(
-          `/mujeres/kinesiologas/${formattedNacionalidad}/${formattedRegion}/${formattedLugar}/${formattedName}/${id}`
-        );
-      }}
+       
+         // Guarda información del modal en el estado del navegador
+    window.history.pushState({
+      modalId: id,
+      modalStatus: true,
+    }, null, `/mujeres/kinesiologas/${formattedNacionalidad}/${formattedRegion}/${formattedLugar}/${formattedName}/${id}`);
+    
+    setDetailsModal({
+      status: true,
+      id: id
+    })    
+  }}
     >
       <motion.div
         style={{ position: "relative" }}
-        className={`mb-2 dark:bg-dark-d bg-white hover:cursor-pointer`}
+        className={`dark:bg-dark-d bg-white hover:cursor-pointer`}
         variants={changeIn(0)}
         initial="hidden"
         animate="show"
@@ -69,13 +73,7 @@ const Card = ({
         <img
           src={imagenPrincipal}
           alt="Imagen de la anfitriona"
-          className={`${
-            nivel === "BICHOTA"
-              ? "border-bor-red"
-              : nivel === "MOTOMAMI"
-              ? "border-blue-500"
-              : "border-slate-500"
-          } relative w-[300px] sm:w-[400px] sm:h-[600px] h-[300px] xl:h-[400px] 2xl:h-[500px] object-cover border-[2px]`}
+          className={`relative w-[300px] sm:w-[300px] sm:h-[500px] h-fit xl:h-[300px] 2xl:h-[400px] object-cover border-[2px]`}
         />
 
         <div

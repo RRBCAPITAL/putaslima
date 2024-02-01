@@ -11,6 +11,7 @@ import Masonry from "react-masonry-css";
 import "./stylecards.css";
 
 import { changeNabvar } from "@/components/NavBar/Navbar";
+import Details from "./Details";
 
 const Cards = ({
   categoria,
@@ -23,6 +24,7 @@ const Cards = ({
   selectedRegion,
   selectedLugar,
   selectedIdioma,
+  setDetailsModal
 }) => {
   const [anuncios, setAnuncios] = useState();
   const [filteredAnuncios, setFilteredAnuncios] = useState([]);
@@ -42,18 +44,6 @@ const Cards = ({
           localStorage.removeItem("updatedAnuncio");
         });
 
-      fetch("/api/video")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("videoStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedVideo");
-        });
-
-        fetch("/api/cositas")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("cositaStorage", JSON.stringify(data));
-        });
     }, 60000);
   }, [listen]);
 
@@ -73,18 +63,6 @@ const Cards = ({
           setAnuncios(data);
           localStorage.setItem("anuncioStorage", JSON.stringify(data));
           localStorage.removeItem("updatedAnuncio");
-        });
-
-        fetch("/api/video")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("videoStorage", JSON.stringify(data));
-        });
-
-        fetch("/api/cositas")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("cositaStorage", JSON.stringify(data));
         });
     }
 
@@ -130,8 +108,6 @@ const Cards = ({
         return true;
       }
     });
-
-    console.log("Estoy aqui");
 
     if (filteredAnun?.length === 0 || !filteredAnun) {
       setNothingFound(true); // Establecer nothingFound en true si no se encontraron resultados
@@ -185,27 +161,13 @@ const Cards = ({
   };
 
   return (
-    <containertotal className="flex flex-col lg:flex-row justify-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff] mt-[200px] mb-10">
+    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff] mt-[200px] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
-      <h1 className="text-slate-400 p-1 rounded border-[1px] w-[100px] mx-auto text-center text-sm border-slate-400 block sm:hidden">
-        Publicidad
-      </h1>
-      <div className=" lg:hidden block h-[160px] sm:h-[300px] lg:h-[500px] w-[96%] lg:w-[250px] mx-auto">
-        <div className="flex gap-1 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-full w-full sm:mx-0 lg:mt-24">
-          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
-            <img src="/assets/publicidad1.jpeg" alt="" className="" />
-          </div>
-          <h1 className="text-slate-400 p-1 rounded border-2 border-slate-400 hidden sm:block">
-            Publicidad
-          </h1>
-          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
-            <img src="/assets/publicidad2.jpeg" alt="" />
-          </div>
-        </div>
+      <div className="w-[96%] 2xl:w-[1400px]">
+      <h1 className="text-[18px] font-bold ml-2 lg:ml-0">Kinesiólogas en Perú</h1>
       </div>
-
-      <contain className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-10 w-[96%] lg:[980px] 2xl:w-[1200px] mx-auto lg:mx-0">
+      <contain className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 justify-center gap-0 sm:gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-10 w-[96%] lg:w-[980px] 2xl:w-[1400px] mx-auto lg:mx-0">
         {filteredAnuncios?.length > 0
           ? filteredAnuncios.map((a) => (
               <Card
@@ -222,24 +184,12 @@ const Cards = ({
                 whatsapp={a?.whatsapp}
                 anuncioTarifaPresencial={a?.tarifaPresencial}
                 anuncioTarifaVirtual={a?.tarifaVirtual}
+                setDetailsModal={setDetailsModal}
               />
             ))
           : ""}
       </contain>
 
-      <div className="hidden lg:block">
-        <div className="flex gap-2 lg:flex-col mb-10 lg:mb-2 justify-center h-[170px] sm:h-[300px] w-[96%] lg:h-[500px] lg:w-[250px] sm:mx-0 ">
-          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
-            <img src="/assets/publicidad1.jpeg" alt="" className="" />
-          </div>
-          <h1 className="text-slate-400 p-1 w-[100px] text-center mx-auto rounded border-2 border-slate-400 hidden sm:block">
-            Publicidad
-          </h1>
-          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
-            <img src="/assets/publicidad2.jpeg" alt="" />
-          </div>
-        </div>
-      </div>
     </containertotal>
   );
 };

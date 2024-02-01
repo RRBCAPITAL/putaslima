@@ -20,6 +20,8 @@ import Cards from "./Contenido/Cards";
 import ModalFilter from "./ModalFilter";
 import { useEffect } from "react";
 import Modal18 from "./Modal18";
+import Details from "./Contenido/Details";
+import DetailsModal from "./Contenido/DetailsModal";
 
 const Inicio = () => {
   const user = useUser();
@@ -35,6 +37,10 @@ const Inicio = () => {
   const [nothingFound, setNothingFound] = useState(false);
   const [resultadosEncontrados, setResultadosEncontrados] = useState(false);
   const [openModal18, setOpenModal18] = useState(false);
+  const [detailsModal, setDetailsModal] = useState({
+    status: false,
+    id: ''
+  })
 
   const [categoria, setCategoria] = useState("");
 
@@ -62,7 +68,7 @@ const Inicio = () => {
   }, []);
 
   return (
-    <main className="z-20 grid min-h-screen w-screen dark:bg-dark-l bg-[#fff]">
+    <main className={`${detailsModal.status ? 'z-[1000] fixed' : 'z-[200]'} grid min-h-screen w-screen dark:bg-dark-l bg-[#fff]`}>
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
       <Banner />
       <Filtros
@@ -85,6 +91,7 @@ const Inicio = () => {
         selectedLugar={selectedLugar}
         selectedIdioma={selectedIdioma}
         selectedAtencion={selectedAtencion}
+        setDetailsModal={setDetailsModal}
       />
 
       {modalFilterOpen && (
@@ -103,6 +110,7 @@ const Inicio = () => {
         />
       )}
       {openModal18 && <Modal18 setOpenModal18={setOpenModal18} />}
+      { detailsModal.status && <DetailsModal id={detailsModal.id} setDetailsModal={setDetailsModal} />}
     </main>
   );
 };
