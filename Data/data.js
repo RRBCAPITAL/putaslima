@@ -35,6 +35,12 @@ export const categorias = [
   "Trio H-M-H"
 ];
 
+export const categoriasS = [
+  "Kinesiólogas",
+  "Masajes",
+  "Videollamada hot",
+];
+
 export const lugarEncuentro = [
   "Depa propio",
   "Atención en hotel",

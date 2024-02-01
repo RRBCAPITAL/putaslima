@@ -41,6 +41,7 @@ const Inicio = () => {
     status: false,
     id: ''
   })
+  const [active, setActive] = useState("Kinesiólogas");
 
   const [categoria, setCategoria] = useState("");
 
@@ -79,6 +80,8 @@ const Inicio = () => {
         setSelectedRegion={setSelectedRegion}
         setSelectedLugar={setSelectedLugar}
         setSelectedIdioma={setSelectedIdioma}
+        setActive={setActive}
+        active={active}
       />
       <Cards
         categoria={categoria}
@@ -92,6 +95,7 @@ const Inicio = () => {
         selectedIdioma={selectedIdioma}
         selectedAtencion={selectedAtencion}
         setDetailsModal={setDetailsModal}
+        active={active}
       />
 
       {modalFilterOpen && (

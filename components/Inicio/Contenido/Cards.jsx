@@ -15,6 +15,7 @@ import Details from "./Details";
 
 const Cards = ({
   categoria,
+  active,
   selectedAtencion,
   textSearch,
   setResultadosEncontrados,
@@ -78,8 +79,6 @@ const Cards = ({
     });
   }, []);
 
-  console.log(anuncios);
-
   useEffect(() => {
     const anunciosSegunNivel = anuncios?.sort((a, b) => {
       const niveles = ["BICHOTA", "MOTOMAMI", "SIMPLE"];
@@ -102,6 +101,8 @@ const Cards = ({
         if (categoria && !a?.categorias?.includes(categoria)) {
           return false;
         }
+        if(textSearch && !a?.region) false;
+        if(textSearch && !a?.lugar) false;
 
         setNothingFound(false);
         setResultadosEncontrados(true);
@@ -149,7 +150,7 @@ const Cards = ({
       setModalFilterOpen(false);
       setFilteredAnuncios(filteredAnun);
     }
-  }, [categoria, anuncios]);
+  }, [categoria, anuncios, textSearch]);
 
   const breakpointColumnsObj = {
     default: 8, // Número de columnas por defecto
@@ -163,11 +164,11 @@ const Cards = ({
   };
 
   return (
-    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff] mt-[200px] mb-10">
+    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-[#f4f4f4] mt-[20px] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
       <div className="w-[96%]">
-      <h1 className="text-[18px] font-bold ml-2 lg:ml-0">Kinesiólogas en Perú</h1>
+      <h1 className="text-[22px] font-bold ml-2 lg:ml-0 text-[#565656]">{ active === 'Kinesiólogas' ? 'Kinesiólogas en Perú' : active === 'Masajes' ? 'Mujeres para Masajes eróticos en Perú' : 'Mujeres para Videollamadas y Sexting en Perú' }</h1>
       </div>
 
       <Masonry

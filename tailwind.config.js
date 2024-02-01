@@ -41,7 +41,7 @@ module.exports = {
       backgroundColor: {
         // 'back-red': '#febd57',
         'back-red': '#ca1e25',
-        'back-orange': '#def2fc', 
+        'back-blue': '#def2fc', 
         'back-red-l': '#643d00',
         'back-redd': '#ff3d64',
         // 'back-red': '#ff3d64',
@@ -63,6 +63,7 @@ module.exports = {
       textColor: {
         't-red': '#ca1e25',
         't-red-l': '#643d00',
+        't-blue': '#def2fc',
         'blackt': '#000000',
         'whitet': '#ffff'
         // 't-red': '#ff3d64',

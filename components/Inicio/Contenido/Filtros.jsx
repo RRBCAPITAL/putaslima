@@ -8,26 +8,25 @@ import ModalFilter from "../ModalFilter";
 import { motion, useAnimation } from "framer-motion";
 import { changeIn } from "@/utils/motionTransitions";
 
-import { categoriasNameIcon } from "@/Data/data";
+import { categorias, categoriasNameIcon, categoriasS } from "@/Data/data";
 
-import "./styles.css"
+import "./styles.css";
 
 import { Poppins } from "next/font/google";
 
-const quick = Poppins({ subsets: ['latin'], weight: "400" })
+const quick = Poppins({ subsets: ["latin"], weight: "400" });
 
 const Filtros = ({
   setCategoria,
   setTextSearch,
+  setActive,
+  active,
   setModalFilterOpen,
   setSelectedNacionalidad,
   setSelectedRegion,
   setSelectedLugar,
   setSelectedIdioma,
 }) => {
-
-  const [active, setActive] = useState("Todas");
-
   const [nombreid, setNombreid] = useState();
 
   const [scrollDirection, setScrollDirection] = useState("down");
@@ -81,7 +80,7 @@ const Filtros = ({
     setCategoria("");
   };
 
-  const l = categoriasNameIcon?.length
+  const l = categoriasNameIcon?.length;
 
   console.log(nombreid);
 
@@ -93,10 +92,9 @@ const Filtros = ({
         animate={controls}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         exit="hidden"
-        className="z-[999] flex sm:flex-row flex-col gap-4 p-2 text-white bg-whitet dark:bg-dark-l fixed rounded-[20px]"
+        className="z-[999] flex flex-col gap-4 p-2 text-white bg-white dark:bg-dark-l rounded-[20px]"
       >
-        {/* <form action="" onSubmit={handleClickSearch} onKeyUp={handleKeyUp} className='lg:h-[80px] flex sm:flex-row flex-col w-full items-center justify-center gap-2 sm:gap-6'>
-          <input type="text" name="nombreid" value={nombreid} onChange={handleSearch} className='w-full lg:w-[50%] sm:h-[70px] lg:h-[70px] my-auto outline-none text-sm sm:text-xl shadow-xl  p-4 rounded-[10px] placeholder:text-[#818181] placeholder:font-medium' placeholder='Busca por id, nombre o ciudad' />
+        {/*
           
           <div className='flex flex-col lg:flex-row gap-1 items-center justify-center'>
        <div className='flex gap-1 items-center justify-center'>
@@ -122,42 +120,34 @@ const Filtros = ({
           
         </form> */}
 
-        <bannercontainer className="w-screen flex mt-20 bg-transparent relative ">
-          <iconos className="z-30 lg:w-[82%] lg:flex-row items-center justify-center mx-auto  overflow-hidden">
+        <bannercontainer className="w-screen flex mt-[50px] bg-transparent relative ">
+          <iconos className="z-30 lg:w-[82%] lg:flex-row overflow-hidden">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden">
+              <h1 className="text-black dark:text-white font-bold">
+                Categorías:
+              </h1>
+              {categoriasS.map((i, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setCategoria(i);
+                    setActive(i);
 
-      <div
-        className="filter-div mx-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden lg:mr-6"
-      >
-        {categoriasNameIcon.map((i, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              setCategoria(i?.name);
-              setActive(i?.name);
-
-              i?.name === "Todas" && handleReset()
-              
-            }}
-            className={`links-box border-b-2 border-transparent hover:border-b-2 hover:border-[#b5b5b5] ${ active === i?.name && "border-b-2 border-black dark:border-white selected-box"}  overflow-hidden`}
-          >
-            <img
-              src={i.path}
-              alt={i.name}
-              width={35}
-              height={35}
-              className="links-img"
-            />
-            <h1 className={`links-label text-black dark:text-white ${ active === i?.name && "selected-label"}`}>{i.name}</h1>
-          </div>
-        ))}
-      </div>
-
-
-      
-      
+                    i === "Kinesiólogas" && handleReset();
+                  }}
+                  className={`cursor-pointer px-2 py-1 rounded text-[16px] sm:text-normal ${
+                    active === i
+                      ? "bg-back-red text-white"
+                      : "bg-back-blue text-black"
+                  }  overflow-hidden`}
+                >
+                  <h1>{i}</h1>
+                </div>
+              ))}
+            </div>
 
             <div className="z-30 w-[20%] flex justify-center gap-2">
-            {/* <button
+              {/* <button
               className="flex gap-2 my-auto text-sm font-light px-2 py-4 text-slate-400 border-2 border-slate-400 transition-all ease-linear duration-300 rounded-[10px]"
               onClick={() => setModalFilterOpen(true)}
             >
@@ -167,7 +157,7 @@ const Filtros = ({
               <TbFilterStar className="my-auto text-slate-400" />
             </button> */}
 
-            {/* <button
+              {/* <button
               className="flex gap-1 my-auto text-sm font-light px-2 py-4 text-slate-400 border-2 border-slate-400 transition-all ease-linear duration-300 rounded-[10px]"
               onClick={handleReset}
             >
@@ -177,9 +167,37 @@ const Filtros = ({
               <TbFilterStar className="my-auto" />
             </button> */}
             </div>
-      
           </iconos>
         </bannercontainer>
+
+        <form
+          action=""
+          onSubmit={handleClickSearch}
+          onKeyUp={handleKeyUp}
+          className="lg:h-[46px] flex sm:flex-row flex-col w-[99%] gap-2 lg:px-[1.5rem]">
+          <input
+            type="text"
+            name="nombreid"
+            value={nombreid}
+            onChange={handleSearch}
+            className="w-[96%] lg:w-full sm:h-[46px] active:text-[#818181] my-auto outline-none text-sm sm:text-[16px] bg-white dark:bg-black border-2 border-[#e3e3e3] p-4 placeholder:text-[#818181] placeholder:font-medium placeholder:text-[16px] text-black dark:text-[#818181]"
+            placeholder="¿Dónde estás?"
+          />
+
+          <div className="flex gap-1 w-[96%]">
+          <input
+            type="text"
+            name="nombreid"
+            value={nombreid}
+            onChange={handleSearch}
+            className="w-[90%] lg:w-full sm:h-[46px] active:text-[#818181] my-auto outline-none text-sm sm:text-[16px] bg-white dark:bg-black border-2 border-[#e3e3e3] p-4 placeholder:text-[#818181] placeholder:font-medium placeholder:text-[16px] text-black dark:text-[#818181]"
+            placeholder="¿Qué buscas?"
+          />
+          <button className="px-2 py-1 text-white bg-back-red">
+            Buscar
+          </button>
+          </div>
+        </form>
       </motion.div>
     </div>
   );

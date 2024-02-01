@@ -129,7 +129,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
     >
       <contain
         onClick={(e) => e.stopPropagation()}
-        className="z-[1001] flex flex-col gap-2 w-full lg:w-[90%] 2xl:w-[1170px] max-h-screen overflow-y-auto p-2 lg:p-4 dark:bg-dark-d mx-auto bg-[#ececec] shadow-2xl "
+        className="z-[1001] flex flex-col gap-2 w-full lg:w-[75%] 2xl:w-[1000px] max-h-screen overflow-y-auto p-2 lg:p-4 dark:bg-dark-d mx-auto bg-[#ececec] shadow-2xl "
       >
         <button
           onClick={() => {
@@ -152,7 +152,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
             <img
               src={anuncio?.imagenPrincipal}
               alt=""
-              className="max-w-[400px] h-fit lg:min-w-[380px] lg:h-fit shadow-xl"
+              className="max-w-[400px] h-fit lg:w-[350px] lg:h-fit shadow-xl"
             />
 
             <div className="flex gap-4 w-full items-center justify-center sm:w-[50%] lg:w-full">
@@ -193,24 +193,24 @@ const DetailsModal = ({ id, setDetailsModal }) => {
 
           <detalles className="flex flex-col gap-6 bg-white p-6">
             <info className="flex flex-col gap-4">
-              <infodetails className="flex flex-col lg:flex-row gap-2 text-slate-700 dark:text-white">
+              <infodetails className="flex flex-col gap-2 text-slate-700 dark:text-white">
                 <h1 className=" text-4xl font-extrabold">{anuncio?.name}</h1>
 
                 <div className="text-[12px] sm:text-sm grid grid-cols-3 text-slate-700 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-none overflow-hidden 2xl:flex gap-2">
                   <h2 className="rounded-[10px] bg-[#def2fc] my-auto px-2 py-1 text-center">
                     {anuncio?.nacionalidad}
                   </h2>
-                  <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                  <h2 className="rounded-[10px] bg-back-blue my-auto px-2 py-1 text-center">
                     {anuncio?.edad} años
                   </h2>
-                  <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                  <h2 className="rounded-[10px] bg-back-blue my-auto px-2 py-1 text-center">
                     {anuncio?.altura} cm
                   </h2>
-                  <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                  <h2 className="rounded-[10px] bg-back-blue my-auto px-2 py-1 text-center">
                     {anuncio?.peso} kg
                   </h2>
                   {/* <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>Idioma: <nav className='inline-block'>{" "}{idioma?.join(", ") || ""}</nav></h2> */}
-                  <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                  <h2 className="rounded-[10px] bg-back-blue my-auto px-2 py-1 text-center">
                     ID: {anuncio?.idFrontend}
                   </h2>
                 </div>
@@ -223,7 +223,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
                   {anuncio?.description}
                 </h2>
                 <h2 className="text-medium font-think text-[16px] text-red-500 font-bold">
-                  No olvides mencionar que me viste en Papayahub.
+                  No olvides mencionar que me viste en Photokines.
                 </h2>
               </infodescription>
             </info>
@@ -324,7 +324,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
                     lugarEncuentro.includes(c) ? (
                       <h2
                         key={index}
-                        className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center"
+                        className="rounded-[10px] bg-[#def2fc] my-auto px-2 py-1 text-center"
                       >
                         {c}
                       </h2>
@@ -350,7 +350,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
                     servicios.includes(c) ? (
                       <h2
                         key={index}
-                        className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center"
+                        className="rounded-[10px] bg-[#def2fc] my-auto px-2 py-1 text-center"
                       >
                         {c}
                       </h2>
@@ -413,7 +413,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
               </div>
             </adicional>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3  gap-4 overflow-hidden relative">
+            <div className="grid sm:grid-cols-2  gap-4 overflow-hidden relative">
               {anuncio?.galeriaFotos?.map((item, index) => (
                 <div key={index}  onClick={() => handleClick(item, index)} className="wrapper-images relative">
                   <img
