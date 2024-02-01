@@ -41,7 +41,7 @@ module.exports = {
       backgroundColor: {
         // 'back-red': '#febd57',
         'back-red': '#ca1e25',
-        'back-orange': '#FFD493', 
+        'back-orange': '#def2fc', 
         'back-red-l': '#643d00',
         'back-redd': '#ff3d64',
         // 'back-red': '#ff3d64',

@@ -3,6 +3,8 @@
     display: flex;
     /* margin-left: -16px;  */
     /* width: auto; */
+    justify-content: center;
+
     gap: 1px;
     width: 96%;
   }

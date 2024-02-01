@@ -41,26 +41,30 @@ const Card = ({
     }
   }, [anuncioTarifaVirtual, anuncioTarifaPresencial]);
 
-  
   return (
     <div
+      className="mb-1"
       onClick={() => {
         const formattedNacionalidad = nacionalidad.replace(/\s+/g, "-");
         const formattedRegion = region.replace(/\s+/g, "-");
         const formattedLugar = lugar.replace(/\s+/g, "-");
         const formattedName = name.replace(/\s+/g, "-");
-       
-         // Guarda información del modal en el estado del navegador
-    window.history.pushState({
-      modalId: id,
-      modalStatus: true,
-    }, null, `/mujeres/kinesiologas/${formattedNacionalidad}/${formattedRegion}/${formattedLugar}/${formattedName}/${id}`);
-    
-    setDetailsModal({
-      status: true,
-      id: id
-    })    
-  }}
+
+        // Guarda información del modal en el estado del navegador
+        window.history.pushState(
+          {
+            modalId: id,
+            modalStatus: true,
+          },
+          null,
+          `/mujeres/kinesiologas/${formattedNacionalidad}/${formattedRegion}/${formattedLugar}/${formattedName}/${id}`
+        );
+
+        setDetailsModal({
+          status: true,
+          id: id,
+        });
+      }}
     >
       <motion.div
         style={{ position: "relative" }}
@@ -73,7 +77,7 @@ const Card = ({
         <img
           src={imagenPrincipal}
           alt="Imagen de la anfitriona"
-          className={`relative w-[300px] sm:w-[300px] sm:h-[500px] h-fit xl:h-[300px] 2xl:h-[400px] object-cover border-[2px]`}
+          className={`relative w-full lg:w-[300px] h-fit xl:h-fit 2xl:h-fit border-[2px]`}
         />
 
         <div

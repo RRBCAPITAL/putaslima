@@ -152,22 +152,29 @@ const Cards = ({
   }, [categoria, anuncios]);
 
   const breakpointColumnsObj = {
-    default: 4, // Número de columnas por defecto
-    1500: 4,
+    default: 8, // Número de columnas por defecto
+    2200:7,
+    1800: 6,
+    1500: 5,
     1200: 3, // Cambiar a 4 columnas en pantallas de 1200px o menos
-    992: 2, // Cambiar a 3 columnas en pantallas de 992px o menos
+    992: 3, // Cambiar a 3 columnas en pantallas de 992px o menos
     768: 2, // Cambiar a 2 columnas en pantallas de 768px o menos
-    610: 2, // Cambiar a 2 columnas en pantallas de 768px o menos
+    610: 1, // Cambiar a 2 columnas en pantallas de 768px o menos
   };
 
   return (
     <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff] mt-[200px] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
-      <div className="w-[96%] 2xl:w-[1400px]">
+      <div className="w-[96%]">
       <h1 className="text-[18px] font-bold ml-2 lg:ml-0">Kinesiólogas en Perú</h1>
       </div>
-      <contain className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 justify-center gap-0 sm:gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-10 w-[96%] lg:w-[980px] 2xl:w-[1400px] mx-auto lg:mx-0">
+
+      <Masonry
+    breakpointCols={breakpointColumnsObj}
+    className="my-masonry-grid"
+    columnClassName="my-masonry-grid_column"
+  >
         {filteredAnuncios?.length > 0
           ? filteredAnuncios.map((a) => (
               <Card
@@ -188,7 +195,7 @@ const Cards = ({
               />
             ))
           : ""}
-      </contain>
+           </Masonry>
 
     </containertotal>
   );

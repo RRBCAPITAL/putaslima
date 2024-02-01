@@ -25,13 +25,12 @@ import "./GaleriaVIDEO/styles.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 import { lugarEncuentro, servicios, serviciosExclusivos } from "@/Data/data";
+import { FaExpand } from "react-icons/fa";
 
 const Details = ({ id }) => {
   const [anuncio, setAnuncio] = useState();
   const [tarifaPresencial, setTarifaPresencial] = useState([]);
   const [tarifaVirtual, setTarifaVirtual] = useState([]);
-
-  const [encuentro, setEncuentro] = useState(false);
 
   const [clickedImg, setClickedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -75,12 +74,6 @@ const Details = ({ id }) => {
     setCurrentIndex(newIndex);
   };
 
-  // useEffect(() => {
-  //     axios.get(`/api/anuncio/${id}`)
-  //     .then(res => setAnuncio(res.data))
-  //     .catch(err => console.log(err))
-  // }, [])
-
   const idioma = [];
   anuncio?.idioma?.map((i) =>
     i === "Español"
@@ -106,17 +99,13 @@ const Details = ({ id }) => {
     }
   }, []);
 
-  const shortID = anuncio?.id?.substring(0, 7);
-
   useEffect(() => {
     if (anuncio?.tarifaPresencial) {
       const tarifaPresencial = JSON.parse(anuncio?.tarifaPresencial);
-      console.log(tarifaPresencial);
       setTarifaPresencial(tarifaPresencial);
     }
     if (anuncio?.tarifaVirtual) {
       const tarifaVirtual = JSON.parse(anuncio?.tarifaVirtual);
-      console.log(tarifaVirtual);
       setTarifaVirtual(tarifaVirtual);
     }
   }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial]);
@@ -128,9 +117,6 @@ const Details = ({ id }) => {
   const handleLlamarClick = () => {
     window.location.href = `tel:${numeroTelefono}`;
   };
-
-  console.log(tarifaPresencial);
-  console.log(tarifaVirtual);
 
   return (
     <div className="flex">
@@ -410,13 +396,14 @@ const Details = ({ id }) => {
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3  gap-4 overflow-hidden relative">
                 {anuncio?.galeriaFotos?.map((item, index) => (
-                  <div key={index} className="wrapper-images">
+                  <div key={index} onClick={() => handleClick(item, index)} className="wrapper-images relative">
                     <img
                       src={item}
                       alt={index}
-                      onClick={() => handleClick(item, index)}
-                      className=""
                     />
+                    <div  className="absolute bottom-1 right-1 bg-white/80 cursor-pointer p-2 rounded-[5px]">
+                    <FaExpand className="text-xl text-blue-500"/>
+                  </div>
                   </div>
                 ))}
               </div>
@@ -474,8 +461,6 @@ const Details = ({ id }) => {
           </div>
         </contain>
 
-        {/* <GaleriaIMG galeriaIMG={anuncio?.galeriaFotos} /> */}
-        {/* <GaleriaVIDEO galeriaVIDEO={anuncio?.galeriaVideos} /> */}
       </containerinfo>
     </div>
   );
