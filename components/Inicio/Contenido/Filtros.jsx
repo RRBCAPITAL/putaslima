@@ -92,7 +92,7 @@ const Filtros = ({
         animate={controls}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         exit="hidden"
-        className="z-[999] flex flex-col gap-4 p-2 text-white bg-white dark:bg-dark-l rounded-[20px]"
+        className="z-[999] flex flex-col gap-4 p-2 text-white bg-white dark:bg-dark-l overflow-hidden"
       >
         {/*
           

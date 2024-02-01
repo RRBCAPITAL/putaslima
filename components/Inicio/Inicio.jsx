@@ -69,7 +69,7 @@ const Inicio = () => {
   }, []);
 
   return (
-    <main className={`${detailsModal.status ? 'z-[1000] fixed' : 'z-[200]'} grid min-h-screen w-screen dark:bg-dark-l bg-[#fff]`}>
+    <main className={`${detailsModal.status ? 'z-[1000] fixed' : 'z-[200]'} overflow-hidden grid min-h-screen w-screen dark:bg-dark-l bg-[#fff]`}>
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
       <Banner />
       <Filtros
