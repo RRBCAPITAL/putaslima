@@ -12,7 +12,7 @@ const Footer = () => {
         <div className='grid sm:grid-cols-4 mx-10 lg:mx-20 gap-10 sm:gap-40'>
             <div className='footer-1'>
                 <Link href={'/'} className="flex flex-col gap-4 max-w-[180px]">
-                    <h1 className="text-2xl font-extrabold">PhotokinesS</h1>
+                    <h1 className="text-2xl font-extrabold">Photokinnes</h1>
                     <h2>Conectamos escorts y kinesiólogas a nivel nacional.</h2>
                 </Link>
             </div>  
