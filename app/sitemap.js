@@ -4,10 +4,16 @@ export default function sitemap() {
 
     return [
       {
-        url: 'https://photokinnes.com',
+        url: 'https://photokinnes.com/',
         lastModified: currentDate,
-        changeFrequency: 'weekly',
+        changeFrequency: 'daily',
         priority: 1,
       },
+      {
+        url: 'https://www.photokinnes.com/',
+        lastModified: currentDate,
+        changeFrequency: 'daily',
+        priority: 1,
+      }
     ]
   }
