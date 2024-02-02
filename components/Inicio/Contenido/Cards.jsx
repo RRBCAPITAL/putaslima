@@ -101,8 +101,6 @@ const Cards = ({
         if (categoria && !a?.categorias?.includes(categoria)) {
           return false;
         }
-        if(textSearch && !a?.region) false;
-        if(textSearch && !a?.lugar) false;
 
         setNothingFound(false);
         setResultadosEncontrados(true);
@@ -150,7 +148,61 @@ const Cards = ({
       setModalFilterOpen(false);
       setFilteredAnuncios(filteredAnun);
     }
-  }, [categoria, anuncios, textSearch]);
+  }, [categoria, anuncios]);
+
+  // Filtrar los anuncios según el valor de búsqueda
+  useEffect(() => {
+    console.log(textSearch);
+    if (textSearch) {
+      function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+      const textSearchWithoutAccents = removeAccents(textSearch.toLowerCase());
+      const result = anuncios?.filter(
+        (a) =>
+          removeAccents(a?.name)
+            ?.toLowerCase()
+            .includes(textSearchWithoutAccents) ||
+          removeAccents(a?.lugar)
+            ?.toLowerCase()
+            .includes(textSearchWithoutAccents) ||
+          removeAccents(a?.region)
+            ?.toLowerCase()
+            .includes(textSearchWithoutAccents) ||
+            a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
+            (a.idFrontend && a.idFrontend.toLowerCase().startsWith(textSearch.toLowerCase()))
+      );
+      const anunciosSimples =
+        result?.filter((s) => s.nivel === "SIMPLE") || [];
+      const anunciosMotoMami =
+        result?.filter((s) => s.nivel === "MOTOMAMI") || [];
+      const anunciosBichota =
+        result?.filter((s) => s.nivel === "BICHOTA") || [];
+      const anunciosSegunNivel = [
+        ...anunciosBichota,
+        ...anunciosMotoMami,
+        ...anunciosSimples,
+      ];
+      setFilteredAnuncios(anunciosSegunNivel);
+    } else {
+      setFilteredAnuncios([]);
+      // Si no hay valor de búsqueda, mostrar todos los anuncios en el orden deseado
+      const anunciosSimples =
+        anuncios?.filter((s) => s.nivel === "SIMPLE") || [];
+      const anunciosMotoMami =
+        anuncios?.filter((s) => s.nivel === "MOTOMAMI") || [];
+      const anunciosBichota =
+        anuncios?.filter((s) => s.nivel === "BICHOTA") || [];
+      const anunciosSegunNivel = [
+        ...anunciosBichota,
+        ...anunciosMotoMami,
+        ...anunciosSimples,
+      ];
+      setFilteredAnuncios(anunciosSegunNivel);
+    }
+  }, [textSearch, anuncios]);
+
+
 
   const breakpointColumnsObj = {
     default: 4, // Número de columnas por defecto
@@ -164,11 +216,11 @@ const Cards = ({
   };
 
   return (
-    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-[#f4f4f4] mt-[20px] mb-10">
+    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-[#f4f4f4] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
       <div className="w-[96%] sm:w-[70%]">
-      <h1 className="text-[22px] font-bold ml-2 lg:ml-0 text-[#565656]">{ active === 'Kinesiólogas' ? 'Kinesiólogas en Perú' : active === 'Masajes' ? 'Mujeres para Masajes eróticos en Perú' : 'Mujeres para Videollamadas y Sexting en Perú' }</h1>
+      <h1 className="text-[22px] font-bold ml-2 lg:ml-0 text-[#565656]">{textSearch ? `Resultados en ${textSearch}` : active === 'Kinesiólogas' ? 'Kinesiólogas en Perú' : active === 'Masajes' ? 'Mujeres para Masajes eróticos en Perú' : active === 'Videollamada hot' ? 'Mujeres para Videollamadas y Sexting en Perú' : active}</h1>
       </div>
 
       <Masonry

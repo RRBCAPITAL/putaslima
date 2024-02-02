@@ -2,8 +2,8 @@ import Link from "next/link"
 
 const ModalInfo = ({setOpenModalInfo}) => {
   return (
-    <div className='fixed'>
-        <div className="z-[1001] h-fit shadow-lg border w-[300px] text-black dark:text-white bg-white dark:bg-black absolute bottom-[50%] right-[34px] lg:top-12 lg:right-8 p-6">
+    <div className='z-[1001] h-fit shadow-lg border w-[300px] text-black dark:text-white bg-white dark:bg-black absolute bottom-[50%] right-[34px] lg:top-12 lg:right-8 p-6'>
+        <div className="">
         <h1 className="text-t-red text-xl">Publicar anuncio</h1>
         <p className="mt-4">Para publicar tu anuncio es necesario que primero te crees una cuenta.</p>
         <div className="mt-4 flex flex-col gap-2">

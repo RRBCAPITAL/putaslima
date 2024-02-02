@@ -32,6 +32,17 @@ const Filtros = ({
   const [scrollDirection, setScrollDirection] = useState("down");
   const controls = useAnimation();
 
+  const handleCategoriaChange = (e) => {
+    const selectedCategoria = e.target.value;
+    setCategoria(selectedCategoria);
+    setActive(selectedCategoria);
+
+    // Realiza otras acciones según sea necesario
+    if (selectedCategoria === "Escort") {
+      handleReset();
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -52,15 +63,10 @@ const Filtros = ({
     };
   }, [scrollDirection, controls]);
 
-  const handleSearch = (e) => {
-    const { value } = e.target;
-    console.log(value);
-    setNombreid(value);
-  };
-
   const handleClickSearch = (e) => {
-    e.preventDefault();
-    setTextSearch(nombreid);
+    const { value } = e.target;
+    setNombreid(value);
+    setTextSearch(value);
   };
 
   const handleKeyUp = (e) => {
@@ -92,7 +98,7 @@ const Filtros = ({
         animate={controls}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         exit="hidden"
-        className="z-[999] flex flex-col gap-4 p-2 text-white bg-white dark:bg-dark-l overflow-hidden"
+        className="z-[999] flex flex-col p-2 text-white bg-white dark:bg-dark-l overflow-hidden"
       >
         {/*
           
@@ -120,7 +126,7 @@ const Filtros = ({
           
         </form> */}
 
-        <bannercontainer className="w-screen flex mt-[50px] bg-transparent relative ">
+        <bannercontainer className="w-screen flex mt-[50px] bg-transparent relative">
           <iconos className="z-30 lg:w-[82%] lg:flex-row overflow-hidden">
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden">
               <h1 className="text-black dark:text-white font-bold">
@@ -170,34 +176,45 @@ const Filtros = ({
           </iconos>
         </bannercontainer>
 
-        <form
-          action=""
-          onSubmit={handleClickSearch}
+        <div
           onKeyUp={handleKeyUp}
-          className="lg:h-[46px] flex sm:flex-row flex-col w-[99%] gap-2 lg:px-[1.5rem]">
+          className="lg:h-[46px] flex sm:flex-row flex-col w-[99%] mt-4 gap-2 lg:px-[1.5rem]">
+
+          <div className="flex gap-1 w-[300px]">
           <input
             type="text"
             name="nombreid"
             value={nombreid}
-            onChange={handleSearch}
-            className="w-[96%] lg:w-full sm:h-[46px] active:text-[#818181] my-auto outline-none text-sm sm:text-[16px] bg-white dark:bg-black border-2 border-[#e3e3e3] p-4 placeholder:text-[#818181] placeholder:font-medium placeholder:text-[16px] text-black dark:text-[#818181]"
+            onChange={handleClickSearch}
+            className="w-[90%] lg:w-full sm:h-[46px] active:text-[#818181] my-auto outline-none text-sm sm:text-[16px] bg-white dark:bg-black border-2 border-[#e3e3e3] p-4 placeholder:text-[#818181] placeholder:font-medium placeholder:text-[16px] text-black dark:text-[#818181]"
             placeholder="¿Dónde estás?"
           />
-
-          <div className="flex gap-1 w-[96%]">
-          <input
-            type="text"
-            name="nombreid"
-            value={nombreid}
-            onChange={handleSearch}
-            className="w-[90%] lg:w-full sm:h-[46px] active:text-[#818181] my-auto outline-none text-sm sm:text-[16px] bg-white dark:bg-black border-2 border-[#e3e3e3] p-4 placeholder:text-[#818181] placeholder:font-medium placeholder:text-[16px] text-black dark:text-[#818181]"
-            placeholder="¿Qué buscas?"
-          />
-          <button className="px-2 py-1 text-white bg-back-red">
+          {/* <button type="submit" className="px-2 py-1 text-white bg-back-red">
             Buscar
-          </button>
+          </button> */}
           </div>
-        </form>
+        </div>
+
+            <div className="lg:h-[46px] mt-4 lg:mt-0 flex sm:flex-row flex-col w-[99%] gap-2 lg:px-[1.5rem]">
+            <select
+            value={active} // Asumiendo que 'active' es el valor seleccionado
+            onChange={handleCategoriaChange}
+            className="flex lg:h-[46px] bg-transparent text-black text- outline-none w-fit flex-col sm:flex-row gap-2 sm:gap-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden"
+          >
+            <option value="">Listado de categorías</option>
+            {categorias.map((i, index) => (
+              <option
+                key={index}
+                value={i}
+                className={`cursor-pointer px-2 py-1 rounded text-[16px] sm:text-normal ${
+                  active === i ? "bg-back-red text-white" : "bg-back-blue text-black"
+                } overflow-hidden`}
+              >
+                {i}
+              </option>
+            ))}
+          </select>
+            </div>
       </motion.div>
     </div>
   );
