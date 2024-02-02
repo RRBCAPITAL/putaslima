@@ -49,9 +49,9 @@ export default function RootLayout({ children }) {
           // termsPageUrl: "https://clerk.com/terms",
       },
       variables: {
-        colorPrimary: "#febd57",
-        colorBackground: "#fff9e6",
-        colorText: "black",
+        // colorPrimary: "#febd57",
+        // colorBackground: "#fff9e6",
+        // colorText: "black",
         // fontFamily: "Nunito"
       }
     }}
@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
     <html lang="es" className={quicksand.className}>
       <body className="w-screen overflow-x-hidden">
 
-        <Head>
+        {/* <Head>
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
 
         <meta property="og:title" content="PAPAYA HUB | " />
@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
           href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
         />
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-        </Head>      
+        </Head>       */}
             <GoogleAnalytics />
             <Suspense fallback={<Loading />}>
            <Access children={children}/>

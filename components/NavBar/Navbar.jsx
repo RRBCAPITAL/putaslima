@@ -147,16 +147,7 @@ const Navbar = ({ currentUserR }) => {
 
           <div className="hidden lg:block">
             <div className="flex gap-[0.8rem]">
-              {/* <Link
-                href={`/dashboard-de-usuario/${id}`}
-                className={`${
-                  pathname === `/dashboard-de-usuario/${id}` && "bg-red-100"
-                } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
-                  text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
-              >
-                <h3 className="my-auto text-t-red">Mis anuncios</h3>
-                <FaUserCheck className="my-auto text-t-red" />
-              </Link> */}
+             
 
               {currentUserR &&
                 (currentUserR?.role === "ADMIN" ||
@@ -206,6 +197,17 @@ const Navbar = ({ currentUserR }) => {
               )}
 
               {currentUserR ? (
+                <>
+                <Link
+                 href={`/dashboard-de-usuario/${id}`}
+                 className={`${
+                   pathname === `/dashboard-de-usuario/${id}` && "bg-red-100"
+                 } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                   text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
+               >
+                 <h3 className="my-auto text-t-red">Mis anuncios</h3>
+                 <FaUserCheck className="my-auto text-t-red" />
+               </Link>
                 <Link
                   href={"/crear-anuncio"}
                   className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
@@ -220,6 +222,7 @@ const Navbar = ({ currentUserR }) => {
                     Publicar anuncio
                   </Button>
                 </Link>
+                </>               
               ) : (
                 <Link
                   href={"/sign-in"}

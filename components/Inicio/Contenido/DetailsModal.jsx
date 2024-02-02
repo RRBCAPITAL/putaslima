@@ -152,7 +152,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
             <img
               src={anuncio?.imagenPrincipal}
               alt=""
-              className="max-w-[400px] h-fit lg:w-[350px] lg:h-fit shadow-xl"
+              className="w-full h-fit lg:w-[400px] lg:h-fit shadow-xl"
             />
 
             <div className="flex gap-4 w-full items-center justify-center sm:w-[50%] lg:w-full">
