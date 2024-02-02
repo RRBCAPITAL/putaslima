@@ -19,16 +19,14 @@ import { Quicksand } from 'next/font/google'
 import { Poppins } from 'next/font/google'
 
 export const metadata = {
-  title: 'Papayahub',
-  description: 'La mejor plataforma de chicas para ti.',
+  title: 'Photokinnes',
+  description: 'Escorts y kinesiologas.',
   icons: {
     icon: ['/favicon_io/favicon.ico?v=4'],
     apple: ['/favicon_io/apple-touch-icon.png?v=4'],
     shortcut: ['/favicon_io/apple-touch-icon.png']
   }
 }
-
-// const quicksand = Quicksand({ subsets: ['latin'] })
 
 const quicksand = Poppins({ subsets: ['latin'], weight: "400" })
 

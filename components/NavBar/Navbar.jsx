@@ -21,11 +21,13 @@ import { fadeIn } from "@/utils/motionTransitions";
 
 import { useClerk } from "@clerk/clerk-react";
 
-import { Poppins } from "next/font/google";
+import { Poppins, Chewy } from "next/font/google";
 import Inicio from "../Inicio/Inicio";
 import BannerAnuncios from "../BannerAnuncios/BannerAnuncios";
+import ModalInfo from "./ModalInfo";
 
 const quick = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
+const chewy = Chewy({ subsets: ["latin"], weight: "400" });
 
 export const changeNabvar = (changeNabvarF) => {
   console.log(changeNabvarF);
@@ -40,6 +42,7 @@ const Navbar = ({ currentUserR }) => {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [changeNabvarF, setChangeNabvarF] = useState(false);
+  const [openModalInfo, setOpenModalInfo] = useState(false);
 
   changeNabvar(changeNabvarF);
 
@@ -124,9 +127,9 @@ const Navbar = ({ currentUserR }) => {
                   setShow(false);
                   setChangeNabvarF(!changeNabvarF);
                 }}
-                className="font-extrabold text-3xl text-red-500 p-2 rounded"
+                className={`${chewy.className} font-extrabold text-4xl text-t-red p-2 rounded`}
               >
-                PhotokinesS
+                PHOTOKINNES
               </Link>
             </div>
             {/* <div className="hidden lg:block dark:text-white text-slate-800">
@@ -147,7 +150,21 @@ const Navbar = ({ currentUserR }) => {
 
           <div className="hidden lg:block">
             <div className="flex gap-[0.8rem]">
-             
+              {theme === "dark" ? (
+                <button
+                  onClick={handleChangeTheme}
+                  className=" rounded-full px-[10px] transition-all duration-300 ease-in-out"
+                >
+                  <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
+                </button>
+              ) : (
+                <button
+                  onClick={handleChangeTheme}
+                  className="rounded-full px-[10px] transition-all duration-300 ease-in-out"
+                >
+                  <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
+                </button>
+              )}
 
               {currentUserR &&
                 (currentUserR?.role === "ADMIN" ||
@@ -180,64 +197,44 @@ const Navbar = ({ currentUserR }) => {
                 </div>
               )} */}
 
-              {theme === "dark" ? (
-                <button
-                  onClick={handleChangeTheme}
-                  className=" rounded-full px-[10px] transition-all duration-300 ease-in-out"
-                >
-                  <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
-                </button>
-              ) : (
-                <button
-                  onClick={handleChangeTheme}
-                  className="rounded-full px-[10px] transition-all duration-300 ease-in-out"
-                >
-                  <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
-                </button>
-              )}
-
               {currentUserR ? (
                 <>
-                <Link
-                 href={`/dashboard-de-usuario/${id}`}
-                 className={`${
-                   pathname === `/dashboard-de-usuario/${id}` && "bg-red-100"
-                 } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                  <Link
+                    href={`/dashboard-de-usuario/${id}`}
+                    className={`${
+                      pathname === `/dashboard-de-usuario/${id}` && "bg-red-100"
+                    } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
                    text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
-               >
-                 <h3 className="my-auto text-t-red">Mis anuncios</h3>
-                 <FaUserCheck className="my-auto text-t-red" />
-               </Link>
-                <Link
-                  href={"/crear-anuncio"}
-                  className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
-                  text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
-                >
-                  <Button
-                    variant="outline"
-                    isLoading={isLoadingAnuncio} // Utiliza el estado de isLoading de Chakra UI
-                    loadingText="Cargando"
-                    onClick={handleClick} // Llama a la función cuando se hace clic
                   >
-                    Publicar anuncio
-                  </Button>
-                </Link>
-                </>               
+                    <h3 className="my-auto text-t-red">Mis anuncios</h3>
+                    <FaUserCheck className="my-auto text-t-red" />
+                  </Link>
+                  <div className="my-auto border-2 scale-[1.1] border-bor-red rounded-full">
+                    <UserButton afterSignOutUrl="/sign-in" />
+                  </div>
+                  <Link
+                    href={"/crear-anuncio"}
+                    className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
+                  text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
+                  >
+                    <Button
+                      variant="outline"
+                      isLoading={isLoadingAnuncio} // Utiliza el estado de isLoading de Chakra UI
+                      loadingText="Cargando"
+                      onClick={handleClick} // Llama a la función cuando se hace clic
+                    >
+                      Publicar anuncio
+                    </Button>
+                  </Link>
+                </>
               ) : (
-                <Link
-                  href={"/sign-in"}
+                <button
                   className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
                 text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
+                  onClick={() => setOpenModalInfo(true)}
                 >
-                  <Button
-                    variant="outline"
-                    isLoading={isLoadingAnuncio} // Utiliza el estado de isLoading de Chakra UI
-                    loadingText="Cargando"
-                    onClick={handleClick} // Llama a la función cuando se hace clic
-                  >
-                    Publicar anuncio
-                  </Button>
-                </Link>
+                  Publicar anuncio
+                </button>
               )}
             </div>
           </div>
@@ -370,18 +367,13 @@ const Navbar = ({ currentUserR }) => {
                     Publicar anuncio
                   </Link>
                 ) : (
-                  <Link
-                    href={`/sign-in`}
-                    onClick={handleNavbarPhone}
-                    className={` ${
-                      pathname === "/crear-anuncio"
-                        ? "text-t-red"
-                        : "dark:text-white text-slate-600 "
-                    } my-auto mt-6 text-xl w-full flex gap-2  py-[0.1rem] px-[1rem] outline-none
+                  <button
+                    onClick={() => setOpenModalInfo(true)}
+                    className={`my-auto mt-6 text-xl w-full flex gap-2  py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
                   >
                     Publicar anuncio
-                  </Link>
+                  </button>
                 )}
 
                 {theme === "dark" ? (
@@ -417,7 +409,7 @@ const Navbar = ({ currentUserR }) => {
         )}
       </header>
 
-      {/* <ModalConfirmLogin showActive={showActive} modalIsOpen={modalIsOpen} onClose={closeModal}/> */}
+      {openModalInfo && <ModalInfo setOpenModalInfo={setOpenModalInfo} />}
     </div>
   );
 };

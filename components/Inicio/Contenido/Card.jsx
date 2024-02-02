@@ -77,7 +77,7 @@ const Card = ({
         <img
           src={imagenPrincipal}
           alt="Imagen de la anfitriona"
-          className={`relative w-full lg:w-[300px] h-fit xl:h-fit 2xl:h-fit border-[2px]`}
+          className={`relative w-full lg:w-fit h-fit xl:h-fit 2xl:h-fit border-[2px]`}
         />
 
         <div

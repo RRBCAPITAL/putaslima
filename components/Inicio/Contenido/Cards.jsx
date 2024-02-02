@@ -153,21 +153,21 @@ const Cards = ({
   }, [categoria, anuncios, textSearch]);
 
   const breakpointColumnsObj = {
-    default: 8, // Número de columnas por defecto
-    2200:7,
-    1800: 6,
-    1500: 5,
+    default: 4, // Número de columnas por defecto
+    2200:4,
+    1800: 4,
+    1500: 4,
     1200: 3, // Cambiar a 4 columnas en pantallas de 1200px o menos
     992: 3, // Cambiar a 3 columnas en pantallas de 992px o menos
     768: 2, // Cambiar a 2 columnas en pantallas de 768px o menos
-    610: 1, // Cambiar a 2 columnas en pantallas de 768px o menos
+    610: 2, // Cambiar a 2 columnas en pantallas de 768px o menos
   };
 
   return (
     <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-[#f4f4f4] mt-[20px] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
-      <div className="w-[96%]">
+      <div className="w-[96%] sm:w-[70%]">
       <h1 className="text-[22px] font-bold ml-2 lg:ml-0 text-[#565656]">{ active === 'Kinesiólogas' ? 'Kinesiólogas en Perú' : active === 'Masajes' ? 'Mujeres para Masajes eróticos en Perú' : 'Mujeres para Videollamadas y Sexting en Perú' }</h1>
       </div>
 
