@@ -21,6 +21,7 @@ import Link from "next/link";
 import "./styles.css";
 
 import { Poppins, Chewy } from "next/font/google";
+import ModalInfo from "@/components/NavBar/ModalInfo";
 
 const chewy = Chewy({ subsets: ["latin"], weight: "400" });
 const quick = Poppins({ subsets: ["latin"], weight: "400" });
@@ -322,6 +323,7 @@ const Filtros = ({
           </div>
         </div>
       </motion.div>
+      {openModalInfo && <ModalInfo setOpenModalInfo={setOpenModalInfo} />}
     </div>
   );
 };
