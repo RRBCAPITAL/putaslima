@@ -1123,7 +1123,7 @@ const CrearAnuncio = () => {
             
                <atencion className="flex flex-col gap-[12px] w-[300px] sm:w-full mx-auto mt-6 lg:mt-2">
               <h1 className="dark:text-whitet text-blackt" >Horario de atención</h1>
-              <containerhorarioatencion className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
+              <containerhorarioatencion className="bg-[#ff7676] dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="dark:text-whitet text-blackt">Selecciona tus días de atención:</label>
                   <diasatencion className="grid grid-cols-4 xl:grid-cols-7 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
@@ -1279,7 +1279,7 @@ const CrearAnuncio = () => {
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-whitet text-blackt">Selecciona los idiomas que domine:</label>
-              <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-whitet text-blackt">
+              <div className="bg-[#ff7676] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-whitet text-blackt">
                 {idiomasPrincipales.map((i) => (
                   <div key={i} className="flex gap-2">
                     <label htmlFor={i}>{i}</label>
@@ -1412,7 +1412,7 @@ const CrearAnuncio = () => {
                   browse: "Seleccionar archivos",
                 },
               }}
-              className="flex gap-2 items-center justify-center p-2 bg-[#ffc876] border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-back-red transition-all ease-linear duration-300"
+              className="flex gap-2 items-center justify-center p-2 bg-[#ff7676] border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-back-red transition-all ease-linear duration-300"
               onUpload={(result) => {
                 // Extrae la URL segura de este objeto y guárdala en el array
                 if (result.info && result.info.secure_url) {

@@ -1,29 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useCallback, useReducer } from "react";
+import { useState, useEffect } from "react";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import { FaUserCheck } from "react-icons/fa";
 import { useUser, UserButton } from "@clerk/nextjs";
-import { usePathname, useRouter } from "next/navigation";
 import { MdNightlight } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import SignOutButton from "./SignOutButton";
-import { MdCreateNewFolder } from "react-icons/md";
 
-import { HiOutlineLogout } from "react-icons/hi";
-
-import { Button, ButtonGroup, Stack } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motionTransitions";
 
-import { useClerk } from "@clerk/clerk-react";
-
 import { Poppins, Chewy } from "next/font/google";
-import Inicio from "../Inicio/Inicio";
-import BannerAnuncios from "../BannerAnuncios/BannerAnuncios";
 import ModalInfo from "./ModalInfo";
 
 const quick = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
@@ -112,138 +105,7 @@ const Navbar = ({ currentUserR }) => {
   return (
     <div className={quick.className}>
       <header className="z-[900] w-screen fixed dark:bg-dark-l bg-white py-0 px-[2rem]">
-        <motion.div
-          className="h-[50px] mx-auto flex items-center justify-between"
-          variants={fadeIn("left", 0)}
-          initial="hidden"
-          animate="show"
-          exit="hidden"
-        >
-          <menu className="flex gap-10">
-            <div className="text-[1rem] font-bold">
-              <Link
-                href={"/"}
-                onClick={() => {
-                  setShow(false);
-                  setChangeNabvarF(!changeNabvarF);
-                }}
-                className={`${chewy.className} font-extrabold text-4xl text-t-red p-2 rounded`}
-              >
-                PHOTOKINNES
-              </Link>
-            </div>
-            {/* <div className="hidden lg:block dark:text-white text-slate-800">
-              <ul className="my-auto flex gap-[2rem] h-full font-bold text-[14px]">
-                <Link
-                  href={"/"}
-                  className={`my-auto ${
-                    pathname === "/"
-                      ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out"
-                      : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"
-                  }`}
-                >
-                  Mujeres
-                </Link>
-              </ul>
-            </div> */}
-          </menu>
-
-          <div className="hidden lg:block">
-            <div className="flex gap-[0.8rem]">
-              {theme === "dark" ? (
-                <button
-                  onClick={handleChangeTheme}
-                  className=" rounded-full px-[10px] transition-all duration-300 ease-in-out"
-                >
-                  <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
-                </button>
-              ) : (
-                <button
-                  onClick={handleChangeTheme}
-                  className="rounded-full px-[10px] transition-all duration-300 ease-in-out"
-                >
-                  <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
-                </button>
-              )}
-
-              {currentUserR &&
-                (currentUserR?.role === "ADMIN" ||
-                  currentUserR?.role === "SUPER_ADMIN") && (
-                  <>
-                    <Link
-                      href={"/dashboard"}
-                      className={`${
-                        pathname === "/dashboard" && "bg-[#dcd7ff]"
-                      } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
-                    text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
-                    >
-                      <h3 className="my-auto text-t-red">Dashboard</h3>
-                      <FaUserCheck className="my-auto text-t-red" />
-                    </Link>
-                  </>
-                )}
-
-              {/* {!currentUserR ? (
-                <Link
-                  href={"/sign-in"}
-                  className="bg-red-100 border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] outline-none
-                 text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]"
-                >
-                  <nav className="inline-block text-t-red">Iniciar Sesión</nav>
-                </Link>
-              ) : (
-                <div className="my-auto border-2 scale-[1.1] border-bor-red rounded-full">
-                  <UserButton afterSignOutUrl="/sign-in" />
-                </div>
-              )} */}
-
-              {currentUserR ? (
-                <>
-                  <Link
-                    href={`/dashboard-de-usuario/${id}`}
-                    className={`${
-                      pathname === `/dashboard-de-usuario/${id}` && "bg-red-100"
-                    } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
-                   text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
-                  >
-                    <h3 className="my-auto text-t-red">Mis anuncios</h3>
-                    <FaUserCheck className="my-auto text-t-red" />
-                  </Link>
-                  <div className="my-auto border-2 scale-[1.1] border-bor-red rounded-full">
-                    <UserButton afterSignOutUrl="/sign-in" />
-                  </div>
-                  <Link
-                    href={"/crear-anuncio"}
-                    className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
-                  text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
-                  >
-                    <Button
-                      variant="outline"
-                      isLoading={isLoadingAnuncio} // Utiliza el estado de isLoading de Chakra UI
-                      loadingText="Cargando"
-                      onClick={handleClick} // Llama a la función cuando se hace clic
-                    >
-                      Publicar anuncio
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <button
-                  className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
-                text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
-                  onClick={() => setOpenModalInfo(true)}
-                >
-                  Publicar anuncio
-                </button>
-              )}
-            </div>
-          </div>
-          <div className=" lg:hidden" onClick={handleNavbarPhone}>
-            <div className="dark:text-[#fff] text-black text-[1.5rem] cursor-pointer flex-none">
-              {show ? <MdOutlineClose /> : <FiMenu />}
-            </div>
-          </div>
-        </motion.div>
+        
 
         {show ? (
           <motion.div
