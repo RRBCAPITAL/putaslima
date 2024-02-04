@@ -104,7 +104,7 @@ const Navbar = ({ currentUserR }) => {
 
   return (
     <div className={quick.className}>
-      <header className="z-[900] w-screen fixed dark:bg-dark-l bg-white py-0 px-[2rem]">
+      <header className="z-[1001] w-screen fixed dark:bg-dark-l bg-white py-0 px-[2rem]">
         
 
         {show ? (

@@ -90,8 +90,9 @@ const Filtros = ({
     };
 
     useEffect(() => {
-      const data = localStorage.getItem("user");
-      data;
+      const data = localStorage.getItem("storedUser");
+      const user = JSON.parse(data);
+      if (user) setCurrentUserR(user);
     }, []);
 
     // Aplicar la clase 'dark' al cuerpo del documento según el estado del tema
@@ -160,7 +161,7 @@ const Filtros = ({
         animate={controls}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         exit="hidden"
-        className="z-[999] flex flex-col p-4 text-white bg-back-red dark:bg-dark-l overflow-hidden w-[72%] mx-auto rounded-[20px] mt-10"
+        className="z-[999] flex flex-col p-4 text-white bg-back-red overflow-hidden w-[92%] lg:w-[72%] mx-auto rounded-[20px] mt-10"
       >
         <div className="w-full h-[50px] mx-auto flex items-center justify-between">
           <div className="text-[1rem] font-bold">
@@ -183,14 +184,14 @@ const Filtros = ({
                   onClick={handleChangeTheme}
                   className=" rounded-full px-[10px] transition-all duration-300 ease-in-out"
                 >
-                  <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
+                  <MdOutlineLightMode className="text-white w-6 h-6 transition-all duration-300 ease-in-out" />
                 </button>
               ) : (
                 <button
                   onClick={handleChangeTheme}
                   className="rounded-full px-[10px] transition-all duration-300 ease-in-out"
                 >
-                  <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out" />
+                  <MdNightlight className="text-white w-6 h-6 transition-all duration-300 ease-in-out" />
                 </button>
               )}
 
@@ -200,13 +201,11 @@ const Filtros = ({
                   <>
                     <Link
                       href={"/dashboard"}
-                      className={`${
-                        pathname === "/dashboard" && "bg-[#dcd7ff]"
-                      } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                      className={`bg-orange-500 transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
                     text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
                     >
-                      <h3 className="my-auto text-t-red">Dashboard</h3>
-                      <FaUserCheck className="my-auto text-t-red" />
+                      <h3 className="my-auto text-white">Dashboard</h3>
+                      <FaUserCheck className="my-auto text-white" />
                     </Link>
                   </>
                 )}
@@ -228,14 +227,12 @@ const Filtros = ({
               {currentUserR ? (
                 <>
                   <Link
-                    href={`/dashboard-de-usuario/${id}`}
-                    className={`${
-                      pathname === `/dashboard-de-usuario/${id}` && "bg-red-100"
-                    } transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                    href={`/dashboard-de-usuario/${currentUserR?.id}`}
+                    className={`bg-orange-500 transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
                    text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
                   >
-                    <h3 className="my-auto text-t-red">Mis anuncios</h3>
-                    <FaUserCheck className="my-auto text-t-red" />
+                    <h3 className="my-auto text-white">Mis anuncios</h3>
+                    <FaUserCheck className="my-auto text-white" />
                   </Link>
                   <div className="my-auto border-2 scale-[1.1] border-bor-red rounded-full">
                     <UserButton afterSignOutUrl="/sign-in" />
@@ -245,14 +242,7 @@ const Filtros = ({
                     className={`bg-orange-500 shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
                   text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                   >
-                    <Button
-                      variant="outline"
-                      isLoading={isLoadingAnuncio} // Utiliza el estado de isLoading de Chakra UI
-                      loadingText="Cargando"
-                      onClick={handleClick} // Llama a la función cuando se hace clic
-                    >
-                      Publicar anuncio
-                    </Button>
+                    <button>Publicar anuncio</button>
                   </Link>
                 </>
               ) : (
@@ -297,20 +287,20 @@ const Filtros = ({
           onKeyUp={handleKeyUp}
           className="lg:h-[46px] flex sm:flex-row flex-col w-[100%] mt-4 gap-2"
         >
-          <div className="flex gap-1 w-full items-center justify-center">
+          <div className="flex flex-col lg:flex-row gap-1 w-full items-center justify-center">
             <input
               type="text"
               name="nombreid"
               value={nombreid}
               onChange={handleClickSearch}
-              className="w-[90%] lg:w-[85%] rounded-[10px] sm:h-[46px] active:text-[#818181] my-auto outline-none text-sm sm:text-[16px] bg-white dark:bg-black border-2 border-[#e3e3e3] p-4 placeholder:text-[#818181] placeholder:font-medium placeholder:text-[16px] text-black dark:text-[#818181]"
+              className="w-[90%] lg:w-[85%] rounded-[10px] sm:h-[46px] active:text-[#818181] my-auto outline-none text-sm sm:text-[16px] bg-white border-2 border-[#e3e3e3] p-4 placeholder:text-[#818181] placeholder:font-medium placeholder:text-[16px] text-black"
               placeholder="Busca por ciudad o distrito"
             />
-            <div className="lg:h-[46px] mt-4 lg:mt-0 flex sm:flex-row flex-col w-[15%] gap-2">
+            <div className="lg:h-[46px] lg:mt-0 flex sm:flex-row flex-col w-[70%] lg:w-[15%] gap-2 ">
               <select
                 value={active} // Asumiendo que 'active' es el valor seleccionado
                 onChange={handleCategoriaChange}
-                className="flex lg:h-[46px] bg-orange-500 rounded-[10px] text-white outline-none w-full flex-col sm:flex-row gap-2 sm:gap-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden"
+                className="flex lg:h-[46px]  bg-orange-500 p-2 rounded-[10px] text-white outline-none w-full flex-col sm:flex-row gap-2 sm:gap-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden"
               >
                 <option value="">FILTROS</option>
                 {categorias.map((i, index) => (

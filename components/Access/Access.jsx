@@ -58,12 +58,8 @@ const Access = ({ children }) => {
         
         setUserData(parsedUser)
        }
-      
-      console.log("estoy aqui");
     }, [user, userData]);
-
-    console.log(userData);
-
+    
   return (
     <>
       {

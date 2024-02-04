@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import { useParams } from 'next/navigation';
 import { Quicksand } from 'next/font/google'
+import Back from '@/components/Back';
 
 const quick = Quicksand({ subsets: ['latin'] })
 
@@ -81,8 +82,10 @@ const DashboardUserPage = () => {
   return (
    <div className={quick.className}>
      <div className="flex flex-col gap-4 min-h-screen min-w-screen dark:bg-dark-l bg-white">
+ 
       <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
-      <div className='my-[100px] w-full flex flex-col items-center gap-10 '>
+      <div className='mb-[80px] mt-4 w-full flex flex-col items-center gap-10 '>
+      <div className='absolute top-0 left-[24px]'><Back /></div>
         <div className='flex flex-col max-w-[95%] lg:max-w-[80%] gap-4'>
           {loader ? ( // Mostrar "Cargando anuncios" mientras los datos se cargan
             <p className='text-slate-400 font-bold text-xl'>Cargando anuncios...</p>
