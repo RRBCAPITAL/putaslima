@@ -129,7 +129,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
     >
       <contain
         onClick={(e) => e.stopPropagation()}
-        className="z-[1001] flex flex-col gap-2 w-full lg:w-[75%] 2xl:w-[1000px] max-h-screen overflow-y-auto p-2 lg:p-4 dark:bg-dark-d mx-auto bg-[#ececec] shadow-2xl "
+        className="z-[1001] flex flex-col gap-2 w-full lg:w-[75%] 2xl:w-[1000px] max-h-screen overflow-y-auto p-2 lg:p-4 dark:bg-black mx-auto bg-[#ececec] shadow-2xl "
       >
         <button
           onClick={() => {
@@ -191,7 +191,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
             </div>
           </div>
 
-          <detalles className="flex flex-col gap-6 bg-white p-6">
+          <detalles className="flex flex-col gap-6 bg-white dark:bg-dark-l p-6">
             <info className="flex flex-col gap-4">
               <infodetails className="flex flex-col gap-2 text-slate-700 dark:text-white">
                 <h1 className=" text-4xl font-extrabold">{anuncio?.name}</h1>

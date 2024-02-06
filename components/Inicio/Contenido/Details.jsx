@@ -26,6 +26,7 @@ import { Pagination, Navigation } from "swiper/modules";
 
 import { lugarEncuentro, servicios, serviciosExclusivos } from "@/Data/data";
 import { FaExpand } from "react-icons/fa";
+import Back from "@/components/Back";
 
 const Details = ({ id }) => {
   const [anuncio, setAnuncio] = useState();
@@ -119,12 +120,13 @@ const Details = ({ id }) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-col">
+      <Back />
       <containerinfo className="flex flex-col gap-4 items-center justify-center dark:bg-dark-l bg-[#edeced] min-h-screen w-screen pb-10">
-        <contain className="flex flex-col gap-2 w-[90%] lg:w-[90%] 2xl:w-[1170px] p-10 mt-[90px] mx-20 dark:bg-dark-d rounded-[10px] bg-white shadow-2xl ">
-          <p className="text-slate-500 dark:text-slate-300 text-medium font-think text-[20px]">
+        <contain className="flex flex-col gap-2 w-[90%] lg:w-[90%] 2xl:w-[1170px] p-4 sm:p-10 mt-[10px] sm:mt-[20px] mx-20 dark:bg-dark-d rounded-[10px] bg-white shadow-2xl ">
+          {/* <p className="text-slate-500 dark:text-slate-300 text-medium font-think text-[20px]">
             <strong>ID: {anuncio?.idFrontend}</strong>
-          </p>
+          </p> */}
 
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="flex flex-col gap-2">
@@ -176,20 +178,20 @@ const Details = ({ id }) => {
                   <h1 className=" text-4xl font-extrabold">{anuncio?.name}</h1>
 
                   <div className="text-[12px] sm:text-sm grid grid-cols-3 text-slate-700 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-none overflow-hidden 2xl:flex gap-2">
-                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]" >
                       {anuncio?.nacionalidad}
                     </h2>
-                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]">
                       {anuncio?.edad} años
                     </h2>
-                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]">
                       {anuncio?.altura} cm
                     </h2>
-                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]">
                       {anuncio?.peso} kg
                     </h2>
                     {/* <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>Idioma: <nav className='inline-block'>{" "}{idioma?.join(", ") || ""}</nav></h2> */}
-                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center">
+                    <h2 className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]">
                       ID: {anuncio?.idFrontend}
                     </h2>
                   </div>
@@ -305,7 +307,7 @@ const Details = ({ id }) => {
                       lugarEncuentro.includes(c) ? (
                         <h2
                           key={index}
-                          className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center"
+                          className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]"
                         >
                           {c}
                         </h2>
@@ -331,7 +333,7 @@ const Details = ({ id }) => {
                       servicios.includes(c) ? (
                         <h2
                           key={index}
-                          className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center"
+                          className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]"
                         >
                           {c}
                         </h2>
@@ -357,7 +359,7 @@ const Details = ({ id }) => {
                       serviciosExclusivos.includes(c) ? (
                         <h2
                           key={index}
-                          className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center"
+                          className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center bg-[#def2fc]"
                         >
                           {c}
                         </h2>

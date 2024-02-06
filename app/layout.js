@@ -19,7 +19,7 @@ import { Quicksand } from 'next/font/google'
 import { Poppins } from 'next/font/google'
 
 export const metadata = {
-  title: 'Photokinnes',
+  title: 'Putas Trujillo',
   description: 'Escorts y kinesiologas.',
   icons: {
     icon: ['/favicon_io/favicon.ico?v=4'],

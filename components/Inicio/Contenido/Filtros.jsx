@@ -171,7 +171,7 @@ const Filtros = ({
                 setShow(false);
                 setChangeNabvarF(!changeNabvarF);
               }}
-              className={`${chewy.className} font-extrabold text-4xl text-orange-500 p-2 rounded`}
+              className={`${chewy.className} font-extrabold text-4xl text-t-red-l p-2 rounded`}
             >
               KINESIOLOGAS
             </Link>
@@ -184,14 +184,14 @@ const Filtros = ({
                   onClick={handleChangeTheme}
                   className=" rounded-full px-[10px] transition-all duration-300 ease-in-out"
                 >
-                  <MdOutlineLightMode className="text-white w-6 h-6 transition-all duration-300 ease-in-out" />
+                  <MdOutlineLightMode className="text-t-red-l w-6 h-6 transition-all duration-300 ease-in-out" />
                 </button>
               ) : (
                 <button
                   onClick={handleChangeTheme}
                   className="rounded-full px-[10px] transition-all duration-300 ease-in-out"
                 >
-                  <MdNightlight className="text-white w-6 h-6 transition-all duration-300 ease-in-out" />
+                  <MdNightlight className="text-t-red-l w-6 h-6 transition-all duration-300 ease-in-out" />
                 </button>
               )}
 
@@ -201,7 +201,7 @@ const Filtros = ({
                   <>
                     <Link
                       href={"/dashboard"}
-                      className={`bg-orange-500 transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                      className={`bg-back-red-l transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
                     text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
                     >
                       <h3 className="my-auto text-white">Dashboard</h3>
@@ -228,7 +228,7 @@ const Filtros = ({
                 <>
                   <Link
                     href={`/dashboard-de-usuario/${currentUserR?.id}`}
-                    className={`bg-orange-500 transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                    className={`bg-back-red-l transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
                    text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
                   >
                     <h3 className="my-auto text-white">Mis anuncios</h3>
@@ -239,7 +239,7 @@ const Filtros = ({
                   </div>
                   <Link
                     href={"/crear-anuncio"}
-                    className={`bg-orange-500 shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
+                    className={`bg-back-red-l shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
                   text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                   >
                     <button>Publicar anuncio</button>
@@ -247,7 +247,7 @@ const Filtros = ({
                 </>
               ) : (
                 <button
-                  className={`bg-orange-500 rounded-[10px] shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
+                  className={`bg-back-red-l rounded-[10px] shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[10px] px-[0.8rem] border-none outline-none
                 text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                   onClick={() => setOpenModalInfo(true)}
                 >
@@ -300,7 +300,7 @@ const Filtros = ({
               <select
                 value={active} // Asumiendo que 'active' es el valor seleccionado
                 onChange={handleCategoriaChange}
-                className="flex lg:h-[46px]  bg-orange-500 p-2 rounded-[10px] text-white outline-none w-full flex-col sm:flex-row gap-2 sm:gap-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden"
+                className="flex lg:h-[46px]  bg-back-red-l p-2 rounded-[10px] text-white outline-none w-full flex-col sm:flex-row gap-2 sm:gap-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden"
               >
                 <option value="">FILTROS</option>
                 {categorias.map((i, index) => (

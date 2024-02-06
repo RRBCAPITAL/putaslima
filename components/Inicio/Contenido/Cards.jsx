@@ -216,7 +216,7 @@ const Cards = ({
   };
 
   return (
-    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-[#f4f4f4] mb-10">
+    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-white mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
       <div className="w-[96%] sm:w-[70%]">
@@ -239,6 +239,7 @@ const Cards = ({
                 lugar={a.lugar}
                 edad={a.edad}
                 tarifaxhr={a.tarifaxhr}
+                description={a.description}
                 region={a.region}
                 nivel={a.nivel}
                 whatsapp={a?.whatsapp}

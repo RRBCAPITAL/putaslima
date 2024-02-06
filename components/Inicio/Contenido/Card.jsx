@@ -12,6 +12,7 @@ const Card = ({
   name,
   nacionalidad,
   lugar,
+  description,
   edad,
   region,
   nivel,
@@ -43,7 +44,7 @@ const Card = ({
 
   return (
     <div
-      className="mb-1"
+      className="mb-[10px]"
       onClick={() => {
         const formattedNacionalidad = nacionalidad.replace(/\s+/g, "-");
         const formattedRegion = region.replace(/\s+/g, "-");
@@ -68,7 +69,7 @@ const Card = ({
     >
       <motion.div
         style={{ position: "relative" }}
-        className={`dark:bg-dark-d bg-white hover:cursor-pointer`}
+        className={`dark:bg-dark-d bg-white hover:cursor-pointer border-2 rounded-[10px]`}
         variants={changeIn(0)}
         initial="hidden"
         animate="show"
@@ -77,126 +78,47 @@ const Card = ({
         <img
           src={imagenPrincipal}
           alt="Imagen de la anfitriona"
-          className={`relative w-full lg:w-fit h-fit xl:h-fit 2xl:h-fit border-[2px]`}
+          className={`relative w-full lg:w-fit h-fit xl:h-fit 2xl:h-fit border-[2px] rounded-t-[10px]`}
         />
 
         <div
-          className="absolute dark:text-white text-slate-600 px-1 lg:px-4"
+          className=" dark:text-white text-slate-600 px-1 lg:px-4"
           style={{
             // backgroundColor: 'rgba(0, 0, 0, 0.7)',
             borderRadius: "0 0 18px 18px",
-            position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
           }}
         >
           <section className="flex flex-col px-1 gap-0 pb-2 lg:pb-[20px]">
-            <div className="flex gap-1">
+            <div className="flex flex-col gap-1">
+              <h2 className="my-auto border-2 border-transparent text-[14px] mt-[3px] line-clamp-2">
+                {description}
+              </h2>
               <div className="flex gap-1 items-center justify-center">
-                <div className="w-full flex gap-[1px] text-black px-1 py-1 rounded items-center justify-center bg-white">
-                  {nacionalidad === "Peruana" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/peru.png"
-                      alt="peru"
-                    />
-                  ) : nacionalidad === "Colombiana" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/colombia.png"
-                      alt="colombia"
-                    />
-                  ) : nacionalidad === "Argentina" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/argentina.png"
-                      alt="argentina"
-                    />
-                  ) : nacionalidad === "Boliviana" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/bolivia.png"
-                      alt="bolivia"
-                    />
-                  ) : nacionalidad === "Ecuatoriana" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/ehcuador.png"
-                      alt="ehcuador"
-                    />
-                  ) : nacionalidad === "Española" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/spain-2.png"
-                      alt="spain-2"
-                    />
-                  ) : nacionalidad === "Brasileña" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/brazil.png"
-                      alt="brazil"
-                    />
-                  ) : nacionalidad === "Chilena" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/chile.png"
-                      alt="chile"
-                    />
-                  ) : nacionalidad === "Uruguaya" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/uruguay.png"
-                      alt="uruguay"
-                    />
-                  ) : nacionalidad === "Mexicana" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/mexico.png"
-                      alt="mexico"
-                    />
-                  ) : nacionalidad === "Paraguaya" ? (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/paraguay.png"
-                      alt="paraguay"
-                    />
-                  ) : (
-                    <img
-                      width="16"
-                      height="16"
-                      src="https://img.icons8.com/color/48/venezuela.png"
-                      alt="venezuela"
-                    />
-                  )}
-                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px]">
-                    {name} -
-                  </h2>
-                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px]">
+                <div className="w-full flex gap-[2px] text-black px-1 py-1 rounded items-center justify-between bg-white  dark:bg-dark-d">
+                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px] px-1 py-1 bg-slate-200 rounded-[10px] shadow-md">
                     {edad} años
+                  </h2>
+                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px]  px-1 sm:px-6 py-1 bg-slate-200 rounded-[10px] shadow-md">
+                    {lugar}
                   </h2>
                 </div>
               </div>
             </div>
 
-            <div className="flex gap-1 mt-1 rounded-[5px] w-fit px-2 py-1 bg-white">
-              <h2 className="text-black my-auto text-[12px]">
-                {lugar}{" "}
+            <div className="flex justify-between gap-1 mt-1 rounded-[5px] w-full px-2 py-1 bg-white dark:bg-dark-d">
+              {(tarifaPresencial[0]?.value || tarifaVirtual[0]?.value) && <h2 className="text-black my-auto text-[12px]  px-2 sm:px-6 py-1 bg-slate-200 rounded-[10px] shadow-md">
                 {tarifaPresencial[0]?.value
-                  ? `- S/${tarifaPresencial[0]?.value}`
-                  : tarifaVirtual[0]?.value && `- S/${tarifaVirtual[0]?.value}`}
-              </h2>
+                  ? `S/${tarifaPresencial[0]?.value}`
+                  : tarifaVirtual[0]?.value && `S/${tarifaVirtual[0]?.value}`}
+              </h2>}
+
+                <h2 className="text-black my-auto text-[12px] px-2 sm:px-6 py-1 bg-slate-200 rounded-[10px] shadow-md">
+                  {nacionalidad}
+                </h2>
+            
             </div>
           </section>
         </div>
