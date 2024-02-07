@@ -68,7 +68,7 @@ const Footer = () => {
   
         </div>
         <div className="text-center mt-[4rem] py-[0.8rem] mx-auto border-t border-slate-500 w-screen">
-                <small>Copyright &copy; Papaya Hub 2023</small>
+                <small>Copyright &copy; Putas Trujillo 2024</small>
         </div>
         
     </footer>
@@ -76,4 +76,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;

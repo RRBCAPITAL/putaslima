@@ -14,9 +14,12 @@ import { MdOutlineLightMode } from "react-icons/md";
 
 import { motion, useAnimation } from "framer-motion";
 import { changeIn } from "@/utils/motionTransitions";
+import { fadeIn } from "@/utils/motionTransitions";
 
 import { categorias, categoriasNameIcon, categoriasS } from "@/Data/data";
 import Link from "next/link";
+
+import SignOutButton from "@/components/NavBar/SignOutButton";
 
 import "./styles.css";
 
@@ -57,6 +60,7 @@ const Filtros = ({
   const [scrollDirection, setScrollDirection] = useState("down");
   const controls = useAnimation();
 
+  const userR = useUser();
   changeNabvar(changeNabvarF);
 
   const handleCategoriaChange = (e) => {
@@ -151,7 +155,7 @@ const Filtros = ({
 
   const l = categoriasNameIcon?.length;
 
-  console.log(nombreid);
+  const handleNavbarPhone = () => setShow(!show);
 
   return (
     <div className={quick.className}>
@@ -312,8 +316,173 @@ const Filtros = ({
             </div>
           </div>
         </div>
+        <div className="absolute top-[50px] right-[30px] lg:hidden" onClick={handleNavbarPhone}>
+          <div className="text-t-red-l text-[1.5rem] cursor-pointer flex-none">
+            {show ? <MdOutlineClose /> : <FiMenu />}
+          </div>
+        </div>
       </motion.div>
       {openModalInfo && <ModalInfo setOpenModalInfo={setOpenModalInfo} />}
+      {show && (
+        <motion.div
+          className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen dark:bg-[#131313] bg-white dark:text-t-dark backdrop:blur-[15px]
+            overflow-hidden transition-nicetransition"
+          variants={fadeIn("left", 0)}
+          initial="hidden"
+          animate="show"
+          exit="hidden"
+        >
+          <div className="flex flex-col justify-between gap-1 my-2">
+            <ul className="flex flex-col text-2xl gap-0 p-[0.1rem] my-4 ">
+              {!currentUserR ? (
+                <div className="flex flex-col gap-1 ">
+                  <h2 className="py-[0.1rem] px-[1rem] font-bold dark:text-white text-slate-600">
+                    ¡Hola!
+                  </h2>
+                  <h2 className="text-sm  py-[0.1rem] px-[1rem] text-slate-600 dark:text-slate-200">
+                    Regístrate o ingresa para empezar a publicar gratis.
+                  </h2>
+                  <div className="flex gap-1 items-center justify-center">
+                    <Link
+                      href={"/sign-up"}
+                      onClick={handleNavbarPhone}
+                      className="w-full  bg-back-red-l text-white border-2 border-bor-red transition-all duration-200 ease-linear flex items-center justify-center gap-[4px] py-[0.3rem] px-[1rem] outline-none
+                rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]"
+                    >
+                      Registrarse
+                    </Link>
+
+                    <Link
+                      href={"/sign-in"}
+                      onClick={handleNavbarPhone}
+                      className="w-full bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex items-center justify-center gap-[4px] text-white py-[0.3rem] px-[1rem] outline-none
+                rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]"
+                    >
+                      Ingresar
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="flex gap-2 dark:text-white text-slate-600 py-[0.1rem] px-[1rem]">
+                    Hola {currentUserR?.firstname}{" "}
+                    <UserButton afterSignOutUrl="/sign-in" />{" "}
+                  </div>
+                  <div className="flex flex-col gap-1 dark:text-slate-400 text-slate-600">
+                    <h2 className="text-sm  py-[0.1rem] px-[1rem]">
+                      Publica gratis y empieza a recibir mensajes.
+                    </h2>
+                    <Link
+                      href={"/crear-anuncio"}
+                      onClick={handleNavbarPhone}
+                      className={` ${
+                        pathname === "/crear-anuncio" && "bg-[#361e09]"
+                      } w-[90%] flex mx-4 items-center justify-center gap-2 text-white bg-back-red-l py-[0.3rem] px-[0.5rem] border-2 border-bor-red outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                    >
+                      <h3 className="my-auto">Publicar gratis</h3>
+                      <FaUserCheck className="my-[4px] h-6 w-6" />
+                    </Link>
+                  </div>
+                </>
+              )}
+
+              {/* <Link
+                  href={"/"}
+                  onClick={handleNavbarPhone}
+                  className={` ${
+                    pathname === "/"
+                      ? "text-t-red"
+                      : "dark:text-white text-slate-600"
+                  } my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                >
+                  Mujeres
+                </Link> */}
+              {/* <Link
+                  href={`/dashboard-de-usuario/${id}`}
+                  onClick={handleNavbarPhone}
+                  className={` ${
+                    pathname === `/dashboard-de-usuario/${id}`
+                      ? "text-t-red"
+                      : "dark:text-white text-slate-600"
+                  } my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                >
+                  Mis anuncios
+                </Link> */}
+
+              {userR?.isSignedIn &&
+                (currentUserR?.role === "ADMIN" ||
+                  currentUserR?.role === "SUPER_ADMIN") && (
+                  <>
+                    <Link
+                      href={`/dashboard`}
+                      onClick={handleNavbarPhone}
+                      className={` ${
+                        pathname === "/dashboard"
+                          ? "text-t-red"
+                          : "dark:text-white text-slate-600"
+                      } my-auto text-xl w-full mt-2 flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                    >
+                      Dashboard
+                    </Link>
+                  </>
+                )}
+
+              {currentUserR ? (
+                <Link
+                  href={`/crear-anuncio`}
+                  onClick={handleNavbarPhone}
+                  className={`${
+                    pathname === "/crear-anuncio"
+                      ? "text-t-red"
+                      : "dark:text-white text-slate-600 "
+                  } my-auto mt-2 text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                >
+                  Publicar anuncio
+                </Link>
+              ) : (
+                <button
+                  onClick={() => setOpenModalInfo(true)}
+                  className={`my-auto dark:text-white mt-6 text-xl w-full flex gap-2  py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                >
+                  Publicar anuncio
+                </button>
+              )}
+
+              {theme === "dark" ? (
+                <div className="flex gap-2 dark:text-white text-slate-600 py-[0.1rem] px-[1rem] hover:scale-[1.05] transition-all scale-[1] ease">
+                  <p className="my-auto text-[16px]"></p>
+                  <button
+                    onClick={handleChangeTheme}
+                    className="rounded-full transition-all duration-300 ease"
+                  >
+                    <MdNightlight className="text-t-red-l w-6 h-6 transition-all duration-300 ease" />
+                  </button>
+                </div>
+              ) : (
+                <div className="flex gap-2 dark:text-white text-slate-600 py-[0.1rem] px-[1rem] hover:scale-[1.05] transition-all scale-[1] ease">
+                  <p className="my-auto text-[16px]"></p>
+                  <button
+                    onClick={handleChangeTheme}
+                    className="rounded-full transition-all duration-300 ease"
+                  >
+                    <MdOutlineLightMode className="text-t-red-l w-6 h-6 transition-all duration-300 ease" />
+                  </button>
+                </div>
+              )}
+            </ul>
+
+            {currentUserR && (
+              <SignOutButton handleNavbarPhone={handleNavbarPhone} />
+            )}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };
