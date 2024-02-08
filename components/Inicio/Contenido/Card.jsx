@@ -69,7 +69,7 @@ const Card = ({
     >
       <motion.div
         style={{ position: "relative" }}
-        className={`dark:bg-dark-d bg-white hover:cursor-pointer border-2 rounded-[10px]`}
+        className={`dark:bg-dark-d bg-white hover:cursor-pointer border-2 border-[#def2fc] rounded-[10px]`}
         variants={changeIn(0)}
         initial="hidden"
         animate="show"
@@ -98,24 +98,24 @@ const Card = ({
               </h2>
               <div className="flex gap-1 items-center justify-center">
                 <div className="w-full flex gap-[2px] text-black px-1 py-1 rounded items-center justify-between bg-white  dark:bg-dark-d">
-                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px] px-1 py-1 bg-slate-200 rounded-[10px] shadow-md">
+                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px] px-4 py-1 bg-back-blue rounded-[10px] shadow-md">
                     {edad} años
                   </h2>
-                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px]  px-1 sm:px-6 py-1 bg-slate-200 rounded-[10px] shadow-md">
-                    {lugar}
+                  <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px]  px-1 sm:px-6 py-1 bg-back-blue rounded-[10px] shadow-md">
+                    {lugar === 'Magdalena del Mar' ? 'Magdalena' : lugar === 'San Juan de Lurigancho' ? 'SJL' : lugar === 'San Juan de Miraflores' ? 'Miraflores' : lugar === 'San Martín de Porres' ? 'SMP' : lugar === 'Villa María del Triunfo' ? 'Villa María' : lugar}
                   </h2>
                 </div>
               </div>
             </div>
 
             <div className="flex justify-between gap-1 mt-1 rounded-[5px] w-full px-2 py-1 bg-white dark:bg-dark-d">
-              {(tarifaPresencial[0]?.value || tarifaVirtual[0]?.value) && <h2 className="text-black my-auto text-[12px]  px-2 sm:px-6 py-1 bg-slate-200 rounded-[10px] shadow-md">
+              {(tarifaPresencial[0]?.value || tarifaVirtual[0]?.value) && <h2 className="text-black my-auto text-[12px]  px-2 sm:px-6 py-1 bg-back-blue rounded-[10px] shadow-md">
                 {tarifaPresencial[0]?.value
                   ? `S/${tarifaPresencial[0]?.value}`
                   : tarifaVirtual[0]?.value && `S/${tarifaVirtual[0]?.value}`}
               </h2>}
 
-                <h2 className="text-black my-auto text-[12px] px-2 sm:px-6 py-1 bg-slate-200 rounded-[10px] shadow-md">
+                <h2 className="text-black my-auto text-[12px] px-2 sm:px-6 py-1 bg-back-blue rounded-[10px] shadow-md">
                   {nacionalidad}
                 </h2>
             
