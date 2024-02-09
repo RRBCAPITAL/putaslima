@@ -5,6 +5,16 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Inicio from '@/components/Inicio/Inicio'
 
+export const metadata = {
+  title: 'kinesiólogas Vip en Lima Metropolitana 🥰I Kinestop✅',
+  description: 'Anuncios de kinesiólogas reales en Perú, kinesiólogas chibolas, kinesiólogas venezolanas, colombianas, Kines teens en Lima, Lince, San Borja, Ate, Comas, Villa Maria, Villa el Salvador, Chorrillos, Miraflores',
+  keywords: ['kinesiologas lima', 'kinesiologas en trujillo', 'los olivos', 'kines teens',
+  'kinesiologas chiclayo', 'prostitutas lima', 'kines surco', 'caletas lima', 'putas peruanas',
+  'putas extranjeras', 'anfitrionas lima', 'kines miraflores', 'kinesiologas venezolanas y colombianas'
+  ],
+}
+
+
 export default function Home() {
   
   return (

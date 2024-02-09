@@ -4,13 +4,13 @@ export default function sitemap() {
 
     return [
       {
-        url: 'https://photokinnes.com/',
+        url: 'https://putastrujillo.com/',
         lastModified: currentDate,
         changeFrequency: 'daily',
         priority: 1,
       },
       {
-        url: 'https://www.photokinnes.com/',
+        url: 'https://www.putastrujillo.com/',
         lastModified: currentDate,
         changeFrequency: 'daily',
         priority: 1,

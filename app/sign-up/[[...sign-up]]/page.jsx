@@ -40,6 +40,12 @@ import { Poppins } from "next/font/google";
 
 const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
 
+export const metadata = {
+  title: 'Registrarse a Kinestop✅',
+  description: 'Registrate y descubre kinesiólogas reales en Perú con departamento propio, atención en hoteles, servicios sexuales en el norte, kines venezolas y kinesiologas colombianas que ofrecen servicios sexuales 100% reales.',
+  keywords: ['Registrarse a kinestop', 'Registrarse en kinesiologas trujillo', 'Registrarse a Kinestop', 'kines teens'],
+}
+
 export default function Page() {
 
   return (
