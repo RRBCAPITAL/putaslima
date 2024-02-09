@@ -42,10 +42,6 @@ export const metadata = {
     "kines miraflores",
     "kinesiologas venezolanas y colombianas",
   ],
-  referrer: 'origin-when-cross-origin',
-  metadataBase: new URL('https://putastrujillo.com/'),
-  authors: [{ name: "RRB CAPITAL" }],
-  publisher: 'RRB CAPITAL',
 };
 
 const quicksand = Poppins({ subsets: ["latin"], weight: "400" });
@@ -77,12 +73,13 @@ export default function RootLayout({ children }) {
         <html lang="es" className={quicksand.className}>
           <body className="w-screen overflow-x-hidden">
             <Head>
-              <link
-                rel="canonical"
-                href="https://putastrujillo.com/"
-                key="canonical"
-              />
-            </Head>
+        <title>Canonical url</title>
+        <link
+          rel="canonical"
+          href="https://putastrujillo.com/"
+          key="canonical"
+        />
+      </Head>
             <GoogleAnalytics />
             <Suspense fallback={<Loading />}>
               <Access children={children} />
