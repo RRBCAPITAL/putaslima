@@ -10,10 +10,16 @@ export default function sitemap() {
         priority: 1,
       },
       {
-        url: 'https://www.putastrujillo.com/',
+        url: 'https://putastrujillo.com/sign-in',
         lastModified: currentDate,
-        changeFrequency: 'daily',
-        priority: 1,
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      },
+      {
+        url: 'https://putastrujillo.com/sign-up',
+        lastModified: currentDate,
+        changeFrequency: 'monthly',
+        priority: 0.5,
       }
     ]
   }
