@@ -20,6 +20,10 @@ export const metadata = {
     "kines miraflores",
     "kinesiologas venezolanas y colombianas",
   ],
+  referrer: 'origin-when-cross-origin',
+  metadataBase: new URL('https://putastrujillo.com/'),
+  authors: [{ name: "RRB CAPITAL" }],
+  publisher: 'RRB CAPITAL',
 };
 
 export default function Home() {
