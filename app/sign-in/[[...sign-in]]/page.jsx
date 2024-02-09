@@ -7,18 +7,6 @@ import Head from "next/head";
 
 const quick = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
-export const metadata = {
-  title: "Ingresa a Kinestop✅",
-  description:
-    "Inicia sesión y descubre kinesiólogas reales en Perú con departamento propio, atención en hoteles, servicios sexuales en el norte, kines venezolas y kinesiologas colombianas que ofrecen servicios sexuales 100% reales.",
-  keywords: [
-    "Iniciar sesion kinestop",
-    "Iniciar sesion en kinesiologas trujillo",
-    "Ingresar a Kinestop",
-    "kines teens",
-  ],
-};
-
 export default function Page() {
   useEffect(() => {
     localStorage.removeItem("storedUser");
