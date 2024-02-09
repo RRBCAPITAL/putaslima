@@ -31,7 +31,6 @@ export default function Home() {
     <>
       <main className="dark:bg-dark-l bg-white flex">
         <Head>
-          <title>Canonical url</title>
           <link
             rel="canonical"
             href="https://putastrujillo.com/"
