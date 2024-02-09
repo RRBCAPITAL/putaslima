@@ -2,7 +2,7 @@ import Head from "next/head";
 import Inicio from "@/components/Inicio/Inicio";
 
 export const metadata = {
-  title: "kinesiólogas Vip en Lima Metropolitana 🥰I Kinestop✅",
+  title: "Kinesiólogas y putas en Trujillo 🥰I Kinestop✅",
   description:
     "Anuncios de kinesiólogas reales en Perú, kinesiólogas chibolas, kinesiólogas venezolanas, colombianas, Kines teens en Lima, Lince, San Borja, Ate, Comas, Villa Maria, Villa el Salvador, Chorrillos, Miraflores",
   keywords: [
