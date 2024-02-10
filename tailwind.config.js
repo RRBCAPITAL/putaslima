@@ -40,7 +40,7 @@ module.exports = {
       },
       backgroundColor: {
         'back-red': '#FBFF39',
-        'back-red-l': '#ca1e25',
+        'back-red-l': '#FF914D',
         'back-blue': '#def2fc', 
         'back-redd': '#ff3d64',
         // 'back-red': '#ff3d64',
@@ -53,7 +53,7 @@ module.exports = {
       },
       borderColor: {
         'bor-red': '#FBFF39',
-        'bor-red-l': '#ca1e25',
+        'bor-red-l': '#FF914D',
         // 'bor-red': '#ff3d64',
         // 'bor-red-l': '#fff2f7',
         'blackt': '#000000',
@@ -61,7 +61,7 @@ module.exports = {
       },
       textColor: {
         't-red': '#FBFF39',
-        't-red-l': '#ca1e25',
+        't-red-l': '#FF914D',
         't-blue': '#def2fc',
         'blackt': '#000000',
         'whitet': '#ffff'

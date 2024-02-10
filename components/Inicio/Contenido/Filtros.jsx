@@ -25,6 +25,7 @@ import "./styles.css";
 
 import { Poppins, Chewy } from "next/font/google";
 import ModalInfo from "@/components/NavBar/ModalInfo";
+import Image from "next/image";
 
 const chewy = Chewy({ subsets: ["latin"], weight: "400" });
 const quick = Poppins({ subsets: ["latin"], weight: "400" });
@@ -177,7 +178,7 @@ const Filtros = ({
               }}
               className={`${chewy.className} font-extrabold text-4xl text-t-red-l p-2 rounded`}
             >
-              KINESIOLOGAS
+              <Image width={180} height={80} src={'/assets/kinestop.png'} className=""/>
             </Link>
           </div>
 
