@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Inicio from "@/components/Inicio/Inicio";
+import { NextSeo } from "next-seo";
 
 export const metadata = {
   title: "Kinesiólogas y putas en Trujillo 🥰I Kinestop✅",
@@ -29,14 +30,8 @@ export const metadata = {
 export default function Home() {
   return (
     <>
+    <NextSeo canonical="www.putastrujillo.com/" />
       <main className="dark:bg-dark-l bg-white flex">
-        <Head>
-          <link
-            rel="canonical"
-            href="https://putastrujillo.com/"
-            key="canonical"
-          />
-        </Head>
         <Inicio />
       </main>
     </>
