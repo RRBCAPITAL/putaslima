@@ -21,7 +21,7 @@ export const metadata = {
     "kinesiologas venezolanas y colombianas",
   ],
   referrer: 'origin-when-cross-origin',
-  metadataBase: new URL('https://www.putastrujillo.com/' || 'https://putastrujillo.com/'),
+  metadataBase: new URL('https://putastrujillo.com/' || 'https://www.putastrujillo.com/'),
   alternates: {
     canonical: "/",
   },
