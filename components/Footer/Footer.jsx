@@ -11,9 +11,9 @@ const Footer = () => {
         <footer className='flex flex-col items-center justify-center text-t-red-l bg-back-red pt-[2rem] lg:pt-[5rem] text-[1rem]'>
         <div className='grid sm:grid-cols-4 mx-10 lg:mx-20 gap-10 sm:gap-40'>
             <div className='footer-1'>
-                <Link href={'/'} className="flex flex-col gap-4 max-w-[180px]">
-                    <h1 className="text-2xl font-extrabold">Putas Trujillo Kinesiologas</h1>
-                    <h2>Conectamos escorts y kinesiólogas a nivel nacional.</h2>
+                <Link href={'/'} className="flex flex-col gap-4 max-w-[300px]">
+                    <h1 className="text-2xl font-extrabold">Kinesiólogas y putas en Trujillo</h1>
+                    <h2>Anuncios de kinesiólogas reales en Perú, kinesiólogas chibolas, kinesiólogas venezolanas, colombianas, Kines teens en Lima, Lince, San Borja, Ate, Comas, Villa Maria, Villa el Salvador, Chorrillos, Miraflores</h2>
                 </Link>
             </div>  
 

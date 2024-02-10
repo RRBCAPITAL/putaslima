@@ -15,18 +15,13 @@ export default function Page() {
   return (
     <div className={quick.className}>
       <Head>
-        <title>Canonical url</title>
-        <link
-          rel="canonical"
-          href="https://putastrujillo.com/sign-in"
-          key="canonical"
-        />
+        <title>Iniciar Sesión a Kinestop</title>
       </Head>
       <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center bg-back-light relative">
         <div className="z-10 mt-20 m-4 bg-[#0000003e] shadow-sm p-[2px] rounded-[20px] relative">
           <section className="m-4 p-4 rounded-[20px]">
             <h1 className="mb-2 text-center text-white font-bold text-xl shadow-normal bg-[#103fef] rounded-[10px] w-[88%] p-2 mx-auto">
-              Iniciar Sesión
+              Iniciar Sesión a Kinestop
             </h1>
             <div className="flex flex-col sm:flex-row gap-2">
               <SignIn />

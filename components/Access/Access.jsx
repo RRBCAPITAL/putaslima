@@ -62,13 +62,6 @@ const Access = ({ children }) => {
 
   return (
     <>
-      <Head>
-        <link
-          rel="canonical"
-          href="https://putastrujillo.com/"
-          key="canonical"
-        />
-      </Head>
       {pathname === "/login" ||
       pathname === "/register" ||
       pathname === "/dashboard" ||

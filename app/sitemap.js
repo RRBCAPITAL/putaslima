@@ -10,6 +10,18 @@ export default function sitemap() {
         priority: 1,
       },
       {
+        url: 'https://putastrujillo.com/crear-anuncio',
+        lastModified: currentDate,
+        changeFrequency: 'monthly',
+        priority: 0.9,
+      },
+      {
+        url: 'https://putastrujillo.com/activar-anuncio',
+        lastModified: currentDate,
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      },
+      {
         url: 'https://putastrujillo.com/sign-in',
         lastModified: currentDate,
         changeFrequency: 'monthly',
@@ -19,7 +31,7 @@ export default function sitemap() {
         url: 'https://putastrujillo.com/sign-up',
         lastModified: currentDate,
         changeFrequency: 'monthly',
-        priority: 0.5,
+        priority: 0.6,
       }
     ]
   }
