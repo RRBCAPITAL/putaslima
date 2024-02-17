@@ -31,9 +31,9 @@ export const metadata = {
 
 export default function Home() {
   return (
-      <main className="dark:bg-dark-l bg-white flex">
-        <Inicio />
-      </main>
+      // <main className="dark:bg-dark-l bg-white flex">
+      //   <Inicio />
+      // </main>
 
   );
 }
