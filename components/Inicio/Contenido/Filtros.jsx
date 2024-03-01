@@ -187,7 +187,6 @@ const Filtros = ({
               />
             </Link>
           </div>
-
           <div className="hidden lg:block">
             <div className="flex gap-[0.8rem]">
               {theme === "dark" ? (
