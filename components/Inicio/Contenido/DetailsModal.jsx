@@ -16,12 +16,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./GaleriaVIDEO/styles.css";
+// import "./GaleriaVIDEO/styles.css";
 
 import { FaExpand } from "react-icons/fa";
 
+import { anuncios } from "@/Data/dataAnuncios";
+
 // import required modules
-import { Pagination, Navigation } from "swiper/modules";
+// import { Pagination, Navigation } from "swiper/modules";
 
 import { lugarEncuentro, servicios, serviciosExclusivos } from "@/Data/data";
 
@@ -84,33 +86,34 @@ const DetailsModal = ({ id, setDetailsModal }) => {
   );
 
   useEffect(() => {
-    const data = localStorage.getItem("anuncioStorage");
-    const Anuncios = JSON.parse(data);
-    const anuncioFound = Anuncios?.find((a) => a?.id === id);
-    if (anuncioFound) {
-      setAnuncio(anuncioFound);
-    } else {
-      axios
-        .get(`/api/anuncio/${id}`)
-        .then((res) => setAnuncio(res.data))
-        .catch((err) => console.log(err));
-    }
+    // const data = localStorage.getItem("anuncioStorage");
+    // const Anuncios = JSON.parse(data);
+    // const anuncioFound = Anuncios?.find((a) => a?.id === id);
+    // if (anuncioFound) {
+    //   setAnuncio(anuncioFound);
+    // } else {
+    //   axios
+    //     .get(`/api/anuncio/${id}`)
+    //     .then((res) => setAnuncio(res.data))
+    //     .catch((err) => console.log(err));
+    // }
+
+    const anuncioFound = anuncios?.find((a) => a?.id === id);
+    setAnuncio(anuncioFound);
   }, []);
 
-  useEffect(() => {
-    if (anuncio?.tarifaPresencial) {
-      const tarifaPresencial = JSON.parse(anuncio?.tarifaPresencial);
-      setTarifaPresencial(tarifaPresencial);
-    }
-    if (anuncio?.tarifaVirtual) {
-      const tarifaVirtual = JSON.parse(anuncio?.tarifaVirtual);
-      setTarifaVirtual(tarifaVirtual);
-    }
-  }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial]);
+  // useEffect(() => {
+  //   if (anuncio?.tarifaPresencial) {
+  //     const tarifaPresencial = JSON.parse(anuncio?.tarifaPresencial);
+  //     setTarifaPresencial(tarifaPresencial);
+  //   }
+  //   if (anuncio?.tarifaVirtual) {
+  //     const tarifaVirtual = JSON.parse(anuncio?.tarifaVirtual);
+  //     setTarifaVirtual(tarifaVirtual);
+  //   }
+  // }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial]);
 
   const numeroTelefono = anuncio?.whatsapp;
-
-  const galeriaVIDEO = anuncio?.galeriaVideos;
 
   const handleLlamarClick = () => {
     window.location.href = `tel:${numeroTelefono}`;
@@ -118,7 +121,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
 
   return (
     <div
-      className="z-[1000] flex fixed max-h-screen w-screen bg-black/60 overflow-y-auto"
+      className="z-[1000] flex fixed max-h-screen w-screen bg-black/40 overflow-y-auto"
       onClick={(e) => {
         setDetailsModal({
           status: false,
@@ -129,7 +132,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
     >
       <contain
         onClick={(e) => e.stopPropagation()}
-        className="z-[1001] flex flex-col gap-2 w-full lg:w-[75%] 2xl:w-[1000px] max-h-screen overflow-y-auto p-2 lg:p-4 dark:bg-black mx-auto bg-[#ececec] shadow-2xl "
+        className="z-[1001] flex flex-col gap-2 w-full lg:w-[75%] 2xl:w-[1000px] max-h-screen overflow-y-auto p-2 lg:p-4 dark:bg-[#1c1b1b] mx-auto bg-[#ececec] shadow-2xl "
       >
         <button
           onClick={() => {
@@ -191,7 +194,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
             </div>
           </div>
 
-          <detalles className="flex flex-col gap-6 bg-white dark:bg-dark-l p-6">
+          <detalles className="flex flex-col gap-6 bg-white dark:bg-[#2b2b2b] p-6">
             <info className="flex flex-col gap-4">
               <infodetails className="flex flex-col gap-2 text-slate-700 dark:text-white">
                 <h1 className=" text-4xl font-extrabold">{anuncio?.name}</h1>
@@ -376,7 +379,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
                     serviciosExclusivos.includes(c) ? (
                       <h2
                         key={index}
-                        className="rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center"
+                        className="rounded-[10px] bg-[#def2fc] my-auto px-2 py-1 text-center"
                       >
                         {c}
                       </h2>
@@ -438,7 +441,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
               )}
             </div>
 
-            {galeriaVIDEO?.length > 0 && (
+            {/* {galeriaVIDEO?.length > 0 && (
               <Swiper
                 slidesPerView={1}
                 spaceBetween={0}
@@ -476,7 +479,7 @@ const DetailsModal = ({ id, setDetailsModal }) => {
                     </SwiperSlide>
                   ))}
               </Swiper>
-            )}
+            )} */}
           </detalles>
         </div>
       </contain>

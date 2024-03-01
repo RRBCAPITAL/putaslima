@@ -15,7 +15,6 @@ const Card = ({
   description,
   edad,
   region,
-  nivel,
   anuncioTarifaPresencial,
   anuncioTarifaVirtual,
   setDetailsModal,
@@ -31,16 +30,16 @@ const Card = ({
     setIsHovered(!isHovered);
   };
 
-  useEffect(() => {
-    if (anuncioTarifaPresencial) {
-      const tarifaPresencial = JSON.parse(anuncioTarifaPresencial);
-      setTarifaPresencial(tarifaPresencial);
-    }
-    if (anuncioTarifaVirtual) {
-      const tarifaVirtual = JSON.parse(anuncioTarifaVirtual);
-      setTarifaVirtual(tarifaVirtual);
-    }
-  }, [anuncioTarifaVirtual, anuncioTarifaPresencial]);
+  // useEffect(() => {
+  //   if (anuncioTarifaPresencial) {
+  //     const tarifaPresencial = JSON.parse(anuncioTarifaPresencial);
+  //     setTarifaPresencial(tarifaPresencial);
+  //   }
+  //   if (anuncioTarifaVirtual) {
+  //     const tarifaVirtual = JSON.parse(anuncioTarifaVirtual);
+  //     setTarifaVirtual(tarifaVirtual);
+  //   }
+  // }, [anuncioTarifaVirtual, anuncioTarifaPresencial]);
 
   return (
     <div
@@ -69,7 +68,7 @@ const Card = ({
     >
       <motion.div
         style={{ position: "relative" }}
-        className={`dark:bg-dark-d bg-white hover:cursor-pointer border-2 border-[#def2fc] rounded-[10px]`}
+        className={`dark:bg-dark-d bg-white hover:cursor-pointer shadow-lg rounded-[10px]`}
         variants={changeIn(0)}
         initial="hidden"
         animate="show"
@@ -102,7 +101,7 @@ const Card = ({
                     {edad} años
                   </h2>
                   <h2 className="my-auto border-2 border-transparent text-[12px] mt-[3px] px-1 sm:px-4 py-1 bg-back-blue rounded-[10px] shadow-md">
-                    {lugar === 'Magdalena del Mar' ? 'Magdalena' : lugar === 'San Juan de Lurigancho' ? 'SJL' : lugar === 'San Juan de Miraflores' ? 'Miraflores' : lugar === 'San Martín de Porres' ? 'SMP' : lugar === 'Villa María del Triunfo' ? 'Villa María' : lugar}
+                  {lugar === 'Magdalena del Mar' ? 'Magdalena' : lugar === 'San Juan de Lurigancho' ? 'SJL' : lugar === 'San Juan de Miraflores' ? 'Miraflores' : lugar === 'San Martín de Porres' ? 'SMP' : lugar === 'Villa María del Triunfo' ? 'Villa María' : lugar}
                   </h2>
                 </div>
               </div>

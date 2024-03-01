@@ -13,6 +13,8 @@ import "./stylecards.css";
 import { changeNabvar } from "@/components/NavBar/Navbar";
 import Details from "./Details";
 
+import { anuncios } from "@/Data/dataAnuncios";
+
 const Cards = ({
   categoria,
   active,
@@ -27,57 +29,57 @@ const Cards = ({
   selectedIdioma,
   setDetailsModal
 }) => {
-  const [anuncios, setAnuncios] = useState();
+  // const [anuncios, setAnuncios] = useState();
   const [filteredAnuncios, setFilteredAnuncios] = useState([]);
   const [updatedAnuncio, setUpdatedAnuncio] = useState(false);
   const [listen, setListen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setListen(!listen);
-      localStorage.removeItem("anuncioStorage");
-      localStorage.removeItem("videoStorage");
-      fetch("/api/anuncio")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          setAnuncios(data);
-          localStorage.setItem("anuncioStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedAnuncio");
-        });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setListen(!listen);
+  //     localStorage.removeItem("anuncioStorage");
+  //     localStorage.removeItem("videoStorage");
+  //     fetch("/api/anuncio")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         setAnuncios(data);
+  //         localStorage.setItem("anuncioStorage", JSON.stringify(data));
+  //         localStorage.removeItem("updatedAnuncio");
+  //       });
 
-    }, 60000);
-  }, [listen]);
+  //   }, 60000);
+  // }, [listen]);
 
-  useEffect(() => {
-    const anuncioStorage = localStorage.getItem("anuncioStorage");
-    const LocalUpdatedAnuncio = localStorage.getItem("updatedAnuncio");
-    const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
+  // useEffect(() => {
+  //   const anuncioStorage = localStorage.getItem("anuncioStorage");
+  //   const LocalUpdatedAnuncio = localStorage.getItem("updatedAnuncio");
+  //   const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
 
-    if (parsedUpdatedAnuncio !== updatedAnuncio) {
-      setUpdatedAnuncio(parsedUpdatedAnuncio);
-    }
+  //   if (parsedUpdatedAnuncio !== updatedAnuncio) {
+  //     setUpdatedAnuncio(parsedUpdatedAnuncio);
+  //   }
 
-    if (!anuncioStorage || updatedAnuncio) {
-      fetch("/api/anuncio")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          setAnuncios(data);
-          localStorage.setItem("anuncioStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedAnuncio");
-        });
-    }
+  //   if (!anuncioStorage || updatedAnuncio) {
+  //     fetch("/api/anuncio")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         setAnuncios(data);
+  //         localStorage.setItem("anuncioStorage", JSON.stringify(data));
+  //         localStorage.removeItem("updatedAnuncio");
+  //       });
+  //   }
 
-    if (!anuncios) {
-      const anunciosS = JSON.parse(anuncioStorage);
-      setAnuncios(anunciosS);
-    }
-  }, [updatedAnuncio]);
+  //   if (!anuncios) {
+  //     const anunciosS = JSON.parse(anuncioStorage);
+  //     setAnuncios(anunciosS);
+  //   }
+  // }, [updatedAnuncio]);
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", () => {
-      localStorage.removeItem("anuncioStorage");
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("beforeunload", () => {
+  //     localStorage.removeItem("anuncioStorage");
+  //   });
+  // }, []);
 
   useEffect(() => {
     const anunciosSegunNivel = anuncios?.sort((a, b) => {
@@ -215,12 +217,14 @@ const Cards = ({
     610: 2, // Cambiar a 2 columnas en pantallas de 768px o menos
   };
 
+  console.log(filteredAnuncios)
+
   return (
-    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-white mb-10">
+    <containertotal className="flex flex-col items-center gap-4 w-screen min-h-screen dark:bg-dark-l bg-[#f4f4f4] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
       <div className="w-[96%] sm:w-[70%]">
-      <h1 className="text-[22px] font-bold ml-2 lg:ml-0 text-[#565656] dark:text-white">{textSearch ? `Resultados en ${textSearch}` : active === 'Kinesiólogas' ? 'Kinesiólogas en Perú' : active === 'Masajes' ? 'Mujeres para Masajes eróticos en Perú' : active === 'Videollamada hot' ? 'Mujeres para Videollamadas y Sexting en Perú' : active}</h1>
+      <h1 className="text-[22px] font-bold ml-2 lg:ml-0 text-[#565656] dark:text-[#d3d3d3]">{textSearch ? `Resultados en ${textSearch}` : active === 'Kinesiólogas' ? 'Kinesiólogas en Perú' : active === 'Masajes' ? 'Mujeres para Masajes eróticos en Perú' : active === 'Videollamada hot' ? 'Mujeres para Videollamadas y Sexting en Perú' : active}</h1>
       </div>
 
       <Masonry
@@ -238,8 +242,8 @@ const Cards = ({
                 nacionalidad={a.nacionalidad}
                 lugar={a.lugar}
                 edad={a.edad}
-                tarifaxhr={a.tarifaxhr}
                 description={a.description}
+                tarifaxhr={a.tarifaxhr}
                 region={a.region}
                 nivel={a.nivel}
                 whatsapp={a?.whatsapp}

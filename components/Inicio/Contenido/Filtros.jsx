@@ -62,6 +62,7 @@ const Filtros = ({
   const controls = useAnimation();
 
   const userR = useUser();
+  console.log(userR);
   changeNabvar(changeNabvarF);
 
   const handleCategoriaChange = (e) => {
@@ -94,11 +95,11 @@ const Filtros = ({
       handleNavbarPhone();
     };
 
-    useEffect(() => {
-      const data = localStorage.getItem("storedUser");
-      const user = JSON.parse(data);
-      if (user) setCurrentUserR(user);
-    }, []);
+    // useEffect(() => {
+    //   const data = localStorage.getItem("storedUser");
+    //   const user = JSON.parse(data);
+    //   if (user) setCurrentUserR(user);
+    // }, []);
 
     // Aplicar la clase 'dark' al cuerpo del documento según el estado del tema
     useEffect(() => {
@@ -178,7 +179,12 @@ const Filtros = ({
               }}
               className={`${chewy.className} font-extrabold text-4xl text-t-red-l p-2 rounded`}
             >
-              <Image width={180} height={80} src={'/assets/kinestop.png'} className=""/>
+              <Image
+                width={180}
+                height={80}
+                src={"/assets/kinestop.png"}
+                className=""
+              />
             </Link>
           </div>
 
@@ -200,7 +206,7 @@ const Filtros = ({
                 </button>
               )}
 
-              {currentUserR &&
+              {/* {currentUserR &&
                 (currentUserR?.role === "ADMIN" ||
                   currentUserR?.role === "SUPER_ADMIN") && (
                   <>
@@ -213,7 +219,7 @@ const Filtros = ({
                       <FaUserCheck className="my-auto text-white" />
                     </Link>
                   </>
-                )}
+                )} */}
 
               {/* {!currentUserR ? (
                 <Link
@@ -229,7 +235,7 @@ const Filtros = ({
                 </div>
               )} */}
 
-              {currentUserR ? (
+              {/* {currentUserR ? (
                 <>
                   <Link
                     href={`/dashboard-de-usuario/${currentUserR?.id}`}
@@ -258,7 +264,15 @@ const Filtros = ({
                 >
                   Publicar anuncio
                 </button>
-              )}
+              )} */}
+              <Link
+                target="_blank"
+                href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola,%20quiero%20crear%20un%20anuncio%20en%20Kinestop.com`}
+                className={`bg-back-red-l rounded-[10px] shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-white py-[12px] px-[1rem] border-none outline-none
+                    text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
+              >
+                Crear anuncio
+              </Link>
             </div>
           </div>
         </div>
@@ -317,7 +331,10 @@ const Filtros = ({
             </div>
           </div>
         </div>
-        <div className="absolute top-[50px] right-[30px] lg:hidden" onClick={handleNavbarPhone}>
+        <div
+          className="absolute top-[50px] right-[30px] lg:hidden"
+          onClick={handleNavbarPhone}
+        >
           <div className="text-t-red-l text-[1.5rem] cursor-pointer flex-none">
             {show ? <MdOutlineClose /> : <FiMenu />}
           </div>
@@ -335,7 +352,7 @@ const Filtros = ({
         >
           <div className="flex flex-col justify-between gap-1 my-2">
             <ul className="flex flex-col text-2xl gap-0 p-[0.1rem] my-4 ">
-              {!currentUserR ? (
+              {!userR.user ? (
                 <div className="flex flex-col gap-1 ">
                   <h2 className="py-[0.1rem] px-[1rem] font-bold dark:text-white text-slate-600">
                     ¡Hola!
@@ -366,7 +383,7 @@ const Filtros = ({
               ) : (
                 <>
                   <div className="flex gap-2 dark:text-white text-slate-600 py-[0.1rem] px-[1rem]">
-                    Hola {currentUserR?.firstname}{" "}
+                    Hola
                     <UserButton afterSignOutUrl="/sign-in" />{" "}
                   </div>
                   <div className="flex flex-col gap-1 dark:text-slate-400 text-slate-600">
@@ -374,11 +391,9 @@ const Filtros = ({
                       Publica gratis y empieza a recibir mensajes.
                     </h2>
                     <Link
-                      href={"/crear-anuncio"}
-                      onClick={handleNavbarPhone}
-                      className={` ${
-                        pathname === "/crear-anuncio" && "bg-[#361e09]"
-                      } w-[90%] flex mx-4 items-center justify-center gap-2 text-white bg-back-red-l py-[0.3rem] px-[0.5rem] border-2 border-bor-red outline-none
+                      target="_blank"
+                      href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola,%20quiero%20crear%20un%20anuncio%20en%20Kinestop.com`}
+                      className={` w-[90%] flex mx-4 items-center justify-center gap-2 text-white bg-back-red-l py-[0.3rem] px-[0.5rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
                     >
                       <h3 className="my-auto">Publicar gratis</h3>
@@ -413,7 +428,7 @@ const Filtros = ({
                   Mis anuncios
                 </Link> */}
 
-              {userR?.isSignedIn &&
+              {/* {userR?.isSignedIn &&
                 (currentUserR?.role === "ADMIN" ||
                   currentUserR?.role === "SUPER_ADMIN") && (
                   <>
@@ -430,21 +445,18 @@ const Filtros = ({
                       Dashboard
                     </Link>
                   </>
-                )}
+                )} */}
 
-              {currentUserR ? (
+              {/* {userR.user ? (
                 <Link
-                  href={`/crear-anuncio`}
-                  onClick={handleNavbarPhone}
-                  className={`${
-                    pathname === "/crear-anuncio"
-                      ? "text-t-red"
-                      : "dark:text-white text-slate-600 "
-                  } my-auto mt-2 text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
-                >
-                  Publicar anuncio
-                </Link>
+                target="_blank"
+                href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola,%20quiero%20crear%20un%20anuncio%20en%20Kinestop.com`}
+                className={` w-[90%] flex mx-4 items-center justify-center gap-2 text-white bg-back-red-l py-[0.3rem] px-[0.5rem] border-2 border-bor-red outline-none
+              rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+              >
+                <h3 className="my-auto">Publicar anuncio</h3>
+                <FaUserCheck className="my-[4px] h-6 w-6" />
+              </Link>
               ) : (
                 <button
                   onClick={() => setOpenModalInfo(true)}
@@ -453,7 +465,7 @@ const Filtros = ({
                 >
                   Publicar anuncio
                 </button>
-              )}
+              )} */}
 
               {theme === "dark" ? (
                 <div className="flex gap-2 dark:text-white text-slate-600 py-[0.1rem] px-[1rem] hover:scale-[1.05] transition-all scale-[1] ease">
@@ -478,7 +490,7 @@ const Filtros = ({
               )}
             </ul>
 
-            {currentUserR && (
+            {userR.user && (
               <SignOutButton handleNavbarPhone={handleNavbarPhone} />
             )}
           </div>
